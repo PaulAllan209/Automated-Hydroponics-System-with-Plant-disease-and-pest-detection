@@ -32,5 +32,5 @@ data = {
     "step_z2":200
 }
 
-# ArduinoComms.send_data(data)
+ArduinoComms.send_data(data)
 print(len())

@@ -7,7 +7,7 @@ void setup() {
 }
 
 void loop() {
-  if (Serial.available()){
+  if (Serial.available() > 0){
     data = Serial.readStringUntil(',');
     Serial.print(data);
   }
