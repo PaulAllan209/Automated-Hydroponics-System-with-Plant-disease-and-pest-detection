@@ -1,6 +1,8 @@
 #include <Arduino.h>
 
-char received_dat;
+int length_dat{50};
+char received_dat[50];
+String received_dat2;
 
 void setup() {
   Serial.begin(9600);
@@ -8,10 +10,7 @@ void setup() {
 
 void loop() {
   if (Serial.available() > 0){
-    received_dat = Serial.read();
-    Serial.println(received_dat);
+    received_dat2 = Serial.readStringUntil(',');
+    Serial.println(received_dat2);
   }
-  
-
 }
-

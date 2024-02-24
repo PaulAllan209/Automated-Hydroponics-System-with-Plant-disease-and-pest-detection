@@ -3,6 +3,7 @@ from modules import communication
 ArduinoComms = communication.ArduinoMegaCommunication()
 
 data = {
+    # 18 values sent
     "base_peris_pump":2,
     "acid_peris_pump":2,
     "nutriA_peris_pump":2,
@@ -31,4 +32,5 @@ data = {
     "step_z2":200
 }
 
-ArduinoComms.send_data(data)
+# ArduinoComms.send_data(data)
+print(len())
