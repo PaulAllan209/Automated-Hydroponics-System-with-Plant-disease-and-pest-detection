@@ -6,7 +6,7 @@ from time import sleep
 class ArduinoMegaCommunication:
     def __init__(self, port='/dev/ttyS0', baudrate=9600, xonxoff=True) -> None:
         self.serial_port = serial.Serial(port, baudrate, xonxoff=xonxoff)
-        self.serial_port.open()
+        # self.serial_port.open()
         
         
     def send_data(self, arduino_data: dict):
@@ -60,8 +60,7 @@ class ArduinoMegaCommunication:
         step_z1 = arduino_data["step_z1"]
         step_z2 = arduino_data["step_z2"]
         
-        data_str = f"{base_peris_pump},{acid_peris_pump},{nutriA_peris_pump},{nutriB_peris_pump},{water_pump_speed},{peltier_state},{peltier_mode},{linear_act},
-        {grow_light_1},{grow_light_2},{air_pump},{exhaust_fan_1},{exhaust_fan_2},{solenoid},{step_x},{step_y},{step_z1},{step_z2}"
+        data_str = f'{base_peris_pump},{acid_peris_pump},{nutriA_peris_pump},{nutriB_peris_pump},{water_pump_speed},{peltier_state},{peltier_mode},{linear_act},{grow_light_1},{grow_light_2},{air_pump},{exhaust_fan_1},{exhaust_fan_2},{solenoid},{step_x},{step_y},{step_z1},{step_z2}'
         
         self.serial_port.write(data_str.encode('utf-8'))
         
