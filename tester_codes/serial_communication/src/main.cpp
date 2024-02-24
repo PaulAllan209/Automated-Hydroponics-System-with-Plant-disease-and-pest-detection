@@ -1,6 +1,6 @@
 #include <Arduino.h>
 
-char data;
+String data;
 void setup() {
   Serial.begin(9600);
   
@@ -8,7 +8,7 @@ void setup() {
 
 void loop() {
   if (Serial.available()){
-    data = Serial.read();
+    data = Serial.readStringUntil(',');
     Serial.print(data);
   }
 

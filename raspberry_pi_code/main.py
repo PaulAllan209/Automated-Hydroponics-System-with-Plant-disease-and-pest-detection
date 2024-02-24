@@ -10,20 +10,20 @@ data = {
     
     "water_pump_speed":0.5,
     
-    "peltier_state":True,
+    "peltier_state":1,
     "peltier_mode":"Cold",
     
-    "linear_act":True,
+    "linear_act":1,
     
-    "grow_light_1":True,
-    "grow_light_2":True,
+    "grow_light_1":1,
+    "grow_light_2":1,
     
-    "air_pump":True,
+    "air_pump":1,
     
-    "exhaust_fan_1":True,
-    "exhaust_fan_2":True,
+    "exhaust_fan_1":1,
+    "exhaust_fan_2":1,
     
-    "solenoid":False,
+    "solenoid":0,
     
     "step_x":200,
     "step_y":200,
