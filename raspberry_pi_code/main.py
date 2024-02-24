@@ -33,4 +33,4 @@ data = {
 }
 
 ArduinoComms.send_data(data)
-print(len())
+print(len(data))
