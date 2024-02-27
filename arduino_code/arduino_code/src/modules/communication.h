@@ -42,6 +42,7 @@ class Communication{
     StepMotors step_motors;
     void read_data(String received_dat);
     void parse_data();
+    void print_data();
 
     private:
     int baudrate;
