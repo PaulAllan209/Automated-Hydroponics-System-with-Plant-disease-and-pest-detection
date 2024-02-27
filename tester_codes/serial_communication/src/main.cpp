@@ -8,10 +8,9 @@ void setup() {
 
 void loop() {
   if (Serial.available() > 0){
-    data = Serial.readStringUntil(',');
-    Serial.println(data);
+    data = Serial.readString();
   }
+  Serial.print('wowmagic');
 
-  
 }
 

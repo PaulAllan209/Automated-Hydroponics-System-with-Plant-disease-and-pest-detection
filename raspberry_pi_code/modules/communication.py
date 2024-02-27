@@ -61,31 +61,28 @@ class ArduinoMegaCommunication:
         step_z2 = arduino_data["step_z2"]
         
         data_str = (
-    f'base_peris_pump,{base_peris_pump},'
-    f'acid_peris_pump,{acid_peris_pump},'
-    f'nutriA_peris_pump,{nutriA_peris_pump},'
-    f'nutriB_peris_pump,{nutriB_peris_pump},'
-    f'water_pump_speed,{water_pump_speed},'
-    f'peltier_state,{peltier_state},'
-    f'peltier_mode,{peltier_mode},'
-    f'linear_act,{linear_act},'
-    f'grow_light_1,{grow_light_1},'
-    f'grow_light_2,{grow_light_2},'
-    f'air_pump,{air_pump},'
-    f'exhaust_fan_1,{exhaust_fan_1},'
-    f'exhaust_fan_2,{exhaust_fan_2},'
-    f'solenoid,{solenoid},'
-    f'step_x,{step_x},'
-    f'step_y,{step_y},'
-    f'step_z1,{step_z1},'
-    f'step_z2,{step_z2}'
+    f'a,{base_peris_pump},'
+    f'b,{acid_peris_pump},'
+    f'c,{nutriA_peris_pump},'
+    f'd,{nutriB_peris_pump},'
+    f'e,{water_pump_speed},'
+    f'f,{peltier_state},'
+    f'g,{peltier_mode},'
+    f'h,{linear_act},'
+    f'i,{grow_light_1},'
+    f'j,{grow_light_2},'
+    f'k,{air_pump},'
+    f'l,{exhaust_fan_1},'
+    f'm,{exhaust_fan_2},'
+    f'n,{solenoid},'
+    f'o,{step_x},'
+    f'p,{step_y},'
+    f'q,{step_z1},'
+    f'r,{step_z2}'
 )
         
         self.serial_port.write(data_str.encode('utf-8'))
         
-        
-        
-    
     def receive_data(self, data):
         pass
     
