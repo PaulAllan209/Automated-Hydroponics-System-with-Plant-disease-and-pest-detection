@@ -2,7 +2,7 @@
 
 class Communication{
     public:
-    Communication(int baud=9600);
+    Communication();
 
     struct RegulatedParam{
         int base_peris_pump{0};
@@ -40,6 +40,8 @@ class Communication{
     RegulatedParam regulated_param;
     UnregulatedParam unregulated_param;
     StepMotors step_motors;
+
+    void serial_begin(int baudrate=9600);
     void read_data(String received_dat);
     void parse_data();
     void print_data();

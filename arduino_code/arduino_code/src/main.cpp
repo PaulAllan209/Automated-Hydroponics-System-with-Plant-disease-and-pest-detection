@@ -2,18 +2,23 @@
 #include "./modules/communication.h"
 // #include "./modules/parameter_controller.h"
 
-Communication communcation;
+Communication communication;
 String received_dat;
 int CTS_pin{13};
 
 void setup() {
   pinMode(CTS_pin, OUTPUT);
-  Serial.begin(9600);
+  communication.serial_begin();
 }
 
 void loop() {
   if (Serial.available() > 0){
     received_dat = Serial.readStringUntil(',');
-    communcation.read_data(received_dat);
+    communication.read_data(received_dat);
+    communication.parse_data();
+  }
+  else{
+    communication.print_data();
+    delay(1000);
   }
 }

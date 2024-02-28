@@ -1,10 +1,15 @@
 #include <Arduino.h>
 #include "./modules/communication.h"
 
-Communication::Communication(int baud){
-    baudrate = baud;
+Communication::Communication(){
 }
 
+// Initialize the serial monitor
+void Communication::serial_begin(int baudrate){
+  Serial.begin(baudrate);
+}
+
+// Data is read via separating it into commas
 void Communication::read_data(String received_dat){
     if (received_dat == static_cast<String>("a")){
       base_peris_pump = Serial.readStringUntil(',').toInt();
@@ -79,6 +84,7 @@ void Communication::read_data(String received_dat){
     }
 }
 
+// Data is separated into regulated, unregulated, and stepper motor structs
 void Communication::parse_data(){
     regulated_param.base_peris_pump = base_peris_pump;
     regulated_param.acid_peris_pump = acid_peris_pump;
@@ -101,4 +107,50 @@ void Communication::parse_data(){
     step_motors.step_y= step_y;
     step_motors.step_z1= step_z1;
     step_motors.step_z2= step_z2;
+}
+
+// Method for testing the communication class
+void Communication::print_data(){
+  // Regulated parameters
+  Serial.print("Base peris pump: ");
+  Serial.println(regulated_param.base_peris_pump);
+  Serial.print("Acid peris pump: ");
+  Serial.println(regulated_param.acid_peris_pump);
+  Serial.print("NutriA peris pump: ");
+  Serial.println(regulated_param.nutriA_peris_pump);
+  Serial.print("NutriB peris pump: ");
+  Serial.println(regulated_param.nutriB_peris_pump);
+  Serial.print("Water pump speed: ");
+  Serial.println(regulated_param.water_pump_speed);
+  Serial.print("Peltier state: ");
+  Serial.println(regulated_param.peltier_state);
+  Serial.print("Peltier mode: ");
+  Serial.println(regulated_param.peltier_mode);
+
+  // Unregulated parameters
+  Serial.print("Linear act: ");
+  Serial.println(unregulated_param.linear_act);
+  Serial.print("Grow light 1: ");
+  Serial.println(unregulated_param.grow_light_1);
+  Serial.print("Grow light 2: ");
+  Serial.println(unregulated_param.grow_light_2);
+  Serial.print("Air pump: ");
+  Serial.println(unregulated_param.air_pump);
+  Serial.print("Exhaust fan 1: ");
+  Serial.println(unregulated_param.exhaust_fan_1);
+  Serial.print("Exhaust fan 2: ");
+  Serial.println(unregulated_param.exhaust_fan_2);
+
+  // Stepper motors
+  Serial.print("Step motor x: ");
+  Serial.println(step_motors.step_x);
+
+  Serial.print("Step motor y: ");
+  Serial.println(step_motors.step_y);
+
+  Serial.print("Step motor z1: ");
+  Serial.println(step_motors.step_z1);
+
+  Serial.print("Step motor z2: ");
+  Serial.println(step_motors.step_z2);
 }
