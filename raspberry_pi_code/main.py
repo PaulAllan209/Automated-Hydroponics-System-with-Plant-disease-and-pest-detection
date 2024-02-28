@@ -32,5 +32,9 @@ data = {
     "step_z2":200
 }
 
-ArduinoComms.send_data(data)
+data2 = "<reg,base,4>"
+
+ArduinoComms.send_raw_data(data2)
+
+# ArduinoComms.send_data(data)
 print(len(data))

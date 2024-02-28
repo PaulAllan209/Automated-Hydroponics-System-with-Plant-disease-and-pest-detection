@@ -86,6 +86,9 @@ class ArduinoMegaCommunication:
     def receive_data(self, data):
         pass
     
+    def send_raw_data(self, data):
+        self.serial_port.write(data.encode('utf-8'))
+    
     def open(self):
         self.serial_port.open()
     
