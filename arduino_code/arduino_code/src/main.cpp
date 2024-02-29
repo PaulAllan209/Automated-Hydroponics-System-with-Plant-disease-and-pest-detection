@@ -15,11 +15,11 @@ void loop() {
   if (Serial.available() > 0){
     communication.read_data();
     communication.parse_data();
+    communication.print_data();
     // communication.read_data(received_dat);
     // communication.parse_data();
   }
-  else{
-    communication.print_data();
-    delay(1000);
-  }
+  // else{
+  //   // delay(1000);
+  // }
 }

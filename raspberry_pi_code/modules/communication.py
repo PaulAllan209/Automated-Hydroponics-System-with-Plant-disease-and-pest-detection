@@ -60,28 +60,44 @@ class ArduinoMegaCommunication:
         step_z1 = arduino_data["step_z1"]
         step_z2 = arduino_data["step_z2"]
         
-        data_str = (
-    f'<100,{base_peris_pump}>'
-    f'<101,{acid_peris_pump}>'
-    f'<102,{nutriA_peris_pump}>'
-    f'<103,{nutriB_peris_pump}>'
-    f'<104,{water_pump_speed}>'
-    f'<105,{peltier_state}>'
-    f'<106,{peltier_mode}>'
-    f'<107,{linear_act}>'
-    f'<108,{grow_light_1}>'
-    f'<109,{grow_light_2}>'
-    f'<110,{air_pump}>'
-    f'<111,{exhaust_fan_1}>'
-    f'<112,{exhaust_fan_2}>'
-    f'<113,{solenoid}>'
-    f'<114,{step_x}>'
-    f'<115,{step_y}>'
-    f'<116,{step_z1}>'
-    f'<117,{step_z2}>'
-)
+        a = f'<100,{base_peris_pump}>'
+        b = f'<101,{acid_peris_pump}>'
+        c = f'<102,{nutriA_peris_pump}>'
+        d = f'<103,{nutriB_peris_pump}>'
+        e = f'<104,{water_pump_speed}>'
+        f = f'<105,{peltier_state}>'
+        g = f'<106,{peltier_mode}>'
+        h = f'<107,{linear_act}>'
+        i = f'<108,{grow_light_1}>'
+        j = f'<109,{grow_light_2}>'
+        k = f'<110,{air_pump}>'
+        l = f'<111,{exhaust_fan_1}>'
+        m = f'<112,{exhaust_fan_2}>'
+        n = f'<113,{solenoid}>'
+        o = f'<114,{step_x}>'
+        p = f'<115,{step_y}>'
+        q = f'<116,{step_z1}>'
+        r = f'<117,{step_z2}>'
         
-        self.serial_port.write(data_str.encode('utf-8'))
+        self.serial_port.write(a.encode('utf-8'))
+        self.serial_port.write(b.encode('utf-8'))
+        self.serial_port.write(c.encode('utf-8'))
+        self.serial_port.write(d.encode('utf-8'))
+        self.serial_port.write(e.encode('utf-8'))
+        self.serial_port.write(f.encode('utf-8'))
+        self.serial_port.write(g.encode('utf-8'))
+        self.serial_port.write(h.encode('utf-8'))
+        self.serial_port.write(i.encode('utf-8'))
+        self.serial_port.write(j.encode('utf-8'))
+        self.serial_port.write(k.encode('utf-8'))
+        self.serial_port.write(l.encode('utf-8'))
+        self.serial_port.write(m.encode('utf-8'))
+        self.serial_port.write(n.encode('utf-8'))
+        self.serial_port.write(o.encode('utf-8'))
+        self.serial_port.write(p.encode('utf-8'))
+        self.serial_port.write(q.encode('utf-8'))
+        self.serial_port.write(r.encode('utf-8'))
+        
         
     def receive_data(self, data):
         pass
