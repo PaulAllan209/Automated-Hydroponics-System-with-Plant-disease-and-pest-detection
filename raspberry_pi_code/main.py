@@ -32,7 +32,7 @@ data = {
     "step_z2":200
 }
 
-data2 = "<reg,base,4>"
+data2 = "<base,4>"
 
 ArduinoComms.send_raw_data(data2)
 
