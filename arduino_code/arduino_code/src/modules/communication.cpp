@@ -159,9 +159,9 @@ void Communication::def_CTS_pin(int pin_num){
 
 void Communication::set_CTS_pin(bool CTS_state){
   if (CTS_state == true){
-    digitalWrite(cts_pin, LOW);
+    digitalWrite(cts_pin, HIGH);
   }
   else if (CTS_state == false){
-    digitalWrite(cts_pin, HIGH);
+    digitalWrite(cts_pin, LOW);
   }
 }
