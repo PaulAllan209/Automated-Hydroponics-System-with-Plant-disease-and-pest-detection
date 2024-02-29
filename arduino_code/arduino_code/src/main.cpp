@@ -13,9 +13,10 @@ void setup() {
 
 void loop() {
   if (Serial.available() > 0){
-    received_dat = Serial.readStringUntil(',');
-    communication.read_data(received_dat);
+    communication.read_data();
     communication.parse_data();
+    // communication.read_data(received_dat);
+    // communication.parse_data();
   }
   else{
     communication.print_data();

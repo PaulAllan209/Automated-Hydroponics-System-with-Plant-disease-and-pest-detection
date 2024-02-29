@@ -10,103 +10,84 @@ void Communication::serial_begin(int baudrate){
 }
 
 // Data is read via separating it into commas
-void Communication::read_data(String received_dat){
-    if (received_dat == static_cast<String>("a")){
-      base_peris_pump = Serial.readStringUntil(',').toInt();
-    }
-
-    else if (received_dat == static_cast<String>("b")){
-      acid_peris_pump = Serial.readStringUntil(',').toInt();
-    }
-
-    else if (received_dat == static_cast<String>("c")){
-      nutriA_peris_pump = Serial.readStringUntil(',').toInt();
-    }
-
-    else if (received_dat == static_cast<String>("d")){
-      nutriB_peris_pump = Serial.readStringUntil(',').toInt();
-    }
-
-    else if (received_dat == static_cast<String>("e")){
-      water_pump_speed = Serial.readStringUntil(',').toFloat();
-    }
-
-    else if (received_dat == static_cast<String>("f")){
-      peltier_state = Serial.readStringUntil(',').toInt();
-    }
-
-    else if (received_dat == static_cast<String>("g")){
-      peltier_mode = Serial.readStringUntil(',');
-    }
-
-    else if (received_dat == static_cast<String>("h")){
-      linear_act = Serial.readStringUntil(',').toInt();
-    }
-
-    else if (received_dat == static_cast<String>("i")){
-      grow_light_1 = Serial.readStringUntil(',').toInt();
-    }
-
-    else if (received_dat == static_cast<String>("j")){
-      grow_light_2 = Serial.readStringUntil(',').toInt();
-    }
-
-    else if (received_dat == static_cast<String>("k")){
-      air_pump = Serial.readStringUntil(',').toInt();
-    }
-    
-    else if (received_dat == static_cast<String>("l")){
-      exhaust_fan_1 = Serial.readStringUntil(',').toInt();
-    }
-
-    else if (received_dat == static_cast<String>("m")){
-      exhaust_fan_2 = Serial.readStringUntil(',').toInt();
-    }
-
-    else if (received_dat == static_cast<String>("n")){
-      solenoid = Serial.readStringUntil(',').toInt();
-    }
-
-    else if (received_dat == static_cast<String>("o")){
-      step_x = Serial.readStringUntil(',').toInt();
-    }
-
-    else if (received_dat == static_cast<String>("p")){
-      step_y = Serial.readStringUntil(',').toInt();
-    }
-
-    else if (received_dat == static_cast<String>("q")){
-      step_z1 = Serial.readStringUntil(',').toInt();
-    }
-
-    else if (received_dat == static_cast<String>("r")){
-      step_z2 = Serial.readStringUntil(',').toInt();
-    }
+void Communication::read_data(){
+  if (Serial.read() == start_marker){
+    tmp_data = Serial.readStringUntil('>');
+  }
 }
 
 // Data is separated into regulated, unregulated, and stepper motor structs
 void Communication::parse_data(){
-    regulated_param.base_peris_pump = base_peris_pump;
-    regulated_param.acid_peris_pump = acid_peris_pump;
-    regulated_param.nutriA_peris_pump = nutriA_peris_pump;
-    regulated_param.nutriB_peris_pump = nutriB_peris_pump;
-    regulated_param.water_pump_speed = water_pump_speed;
-    regulated_param.peltier_state= peltier_state;
-    regulated_param.peltier_mode= peltier_mode;
+    tmp_data.toCharArray(char_arr, char_arr_size);
 
-    unregulated_param.linear_act= linear_act;
-    unregulated_param.grow_light_1= grow_light_1;
-    unregulated_param.grow_light_2= grow_light_2;
-    unregulated_param.air_pump= air_pump;
-    unregulated_param.exhaust_fan_1= exhaust_fan_1;
-    unregulated_param.exhaust_fan_2= exhaust_fan_2;
+    // Store the data id 
+    strt_ok_idx = strtok(char_arr, ",");
+    id_data = atoi(strt_ok_idx);
 
-    regulated_param.solenoid= solenoid;
-
-    step_motors.step_x= step_x;
-    step_motors.step_y= step_y;
-    step_motors.step_z1= step_z1;
-    step_motors.step_z2= step_z2;
+    // Store the data itself
+    strt_ok_idx = strtok(NULL, ",");
+    strcpy(data_contained, strt_ok_idx);
+    
+    switch (id_data){
+      case 100:
+        regulated_param.base_peris_pump = atoi(data_contained);
+        break;
+      case 101:
+        regulated_param.acid_peris_pump = atoi(data_contained);
+        break;
+      case 102:
+        regulated_param.nutriA_peris_pump = atoi(data_contained);
+        break;
+      case 103: 
+        regulated_param.nutriB_peris_pump = atoi(data_contained);
+        break;
+      case 104:
+        regulated_param.water_pump_speed = atof(data_contained);
+        break;
+      case 105:
+        regulated_param.peltier_state= atoi(data_contained);
+        break;
+      case 106:
+        regulated_param.peltier_mode= peltier_mode;
+        break;
+      case 107:
+        unregulated_param.linear_act= atoi(data_contained);
+        break;
+      case 108:
+        unregulated_param.grow_light_1= atoi(data_contained);
+        break;
+      case 109:
+        unregulated_param.grow_light_2= atoi(data_contained);
+        break;
+      case 110: 
+        unregulated_param.air_pump= atoi(data_contained);
+        break;
+      case 111:
+        unregulated_param.exhaust_fan_1= atoi(data_contained);
+        break;
+      case 112:
+        unregulated_param.exhaust_fan_2= atoi(data_contained);
+        break;
+      case 113:
+        regulated_param.solenoid= atoi(data_contained);
+        break;
+      case 114:
+        step_motors.step_x= atoi(data_contained);
+        break;
+      case 115:
+        step_motors.step_y= atoi(data_contained);
+        break;
+      case 116:
+        step_motors.step_z1= atoi(data_contained);
+        break;
+      case 117:
+        step_motors.step_z2= atoi(data_contained);
+        break;
+      
+      default:
+        break;
+    }
+    
 }
 
 // Method for testing the communication class
@@ -153,4 +134,16 @@ void Communication::print_data(){
 
   Serial.print("Step motor z2: ");
   Serial.println(step_motors.step_z2);
+}
+
+void Communication::read_raw_data(String received_dat){
+  raw_data = received_dat;
+}
+
+void Communication::print_raw_data(){
+  // Serial.println(tmp_data);
+  Serial.print("Data ID: ");
+  Serial.println(id_data);
+  Serial.print("Data contained: ");
+  Serial.println(data_contained);
 }

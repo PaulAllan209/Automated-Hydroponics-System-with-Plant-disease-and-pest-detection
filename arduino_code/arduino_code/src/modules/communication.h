@@ -42,9 +42,12 @@ class Communication{
     StepMotors step_motors;
 
     void serial_begin(int baudrate=9600);
-    void read_data(String received_dat);
+    void read_data();
     void parse_data();
     void print_data();
+
+    void read_raw_data(String received_dat);
+    void print_raw_data();
 
     private:
     int baudrate;
@@ -74,4 +77,15 @@ class Communication{
     int step_y;
     int step_z1;
     int step_z2;
+
+
+    char start_marker = '<';
+    String tmp_data;
+    static const int char_arr_size = 16;
+    char char_arr[char_arr_size];
+    int id_data;
+    char data_contained[8];
+    char* strt_ok_idx;
+
+    String raw_data = "No data";
 };
