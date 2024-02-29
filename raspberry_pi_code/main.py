@@ -12,7 +12,7 @@ data = {
     "water_pump_speed":0.5,
     
     "peltier_state":1,
-    "peltier_mode":"Cold",
+    "peltier_mode":"C",
     
     "linear_act":1,
     

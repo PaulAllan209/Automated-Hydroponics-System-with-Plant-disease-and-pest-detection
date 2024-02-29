@@ -108,7 +108,7 @@ void Communication::print_data(){
   Serial.print("Peltier state: ");
   Serial.println(regulated_param.peltier_state);
   Serial.print("Peltier mode: ");
-  Serial.println(regulated_param.peltier_mode[0]);
+  Serial.println(regulated_param.peltier_mode);
 
   // Unregulated parameters
   Serial.print("Linear act: ");

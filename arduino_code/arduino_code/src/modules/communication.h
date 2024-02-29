@@ -13,7 +13,7 @@ class Communication{
         float water_pump_speed{0};
 
         int peltier_state{0};
-        String peltier_mode{"Cold"};
+        char peltier_mode{'C'};
 
         int solenoid{0};
     };
@@ -64,7 +64,7 @@ class Communication{
     float water_pump_speed;
 
     int peltier_state;
-    String peltier_mode;
+    char peltier_mode;
 
     int linear_act;
 
