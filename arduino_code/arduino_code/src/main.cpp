@@ -7,7 +7,7 @@ String received_dat;
 int CTS_pin{13};
 
 void setup() {
-  pinMode(CTS_pin, OUTPUT);
+  communication.def_CTS_pin(CTS_pin);
   communication.serial_begin();
 }
 

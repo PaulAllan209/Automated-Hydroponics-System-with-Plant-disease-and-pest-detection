@@ -49,6 +49,11 @@ class Communication{
     void read_raw_data(String received_dat);
     void print_raw_data();
 
+    // Hardware flow control methods
+    void def_CTS_pin(int pin_num);
+    void set_CTS_pin(bool CTS_state);
+
+    // Variables used inside the class
     private:
     int baudrate;
     int base_peris_pump;
@@ -88,4 +93,7 @@ class Communication{
     char* strt_ok_idx;
 
     String raw_data = "No data";
+
+    // CTS pin for flow control
+    int cts_pin;
 };

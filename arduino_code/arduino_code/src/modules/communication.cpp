@@ -11,9 +11,12 @@ void Communication::serial_begin(int baudrate){
 
 // Data is read via separating it into commas
 void Communication::read_data(){
+  set_CTS_pin(false); // Hardware data flowcontrol
   if (Serial.read() == start_marker){
     tmp_data = Serial.readStringUntil('>');
   }
+  set_CTS_pin(true);
+
 }
 
 // Data is separated into regulated, unregulated, and stepper motor structs
@@ -87,7 +90,6 @@ void Communication::parse_data(){
       default:
         break;
     }
-    
 }
 
 // Method for testing the communication class
@@ -146,4 +148,20 @@ void Communication::print_raw_data(){
   Serial.println(id_data);
   Serial.print("Data contained: ");
   Serial.println(data_contained);
+}
+
+
+// Hardware flow control methods
+void Communication::def_CTS_pin(int pin_num){
+  cts_pin = pin_num;
+  pinMode(pin_num, OUTPUT);
+}
+
+void Communication::set_CTS_pin(bool CTS_state){
+  if (CTS_state == true){
+    digitalWrite(cts_pin, LOW);
+  }
+  else if (CTS_state == false){
+    digitalWrite(cts_pin, HIGH);
+  }
 }
