@@ -11,9 +11,12 @@ void Communication::serial_begin(int baudrate){
 
 // Data is read via separating it into commas
 void Communication::read_data(){
+  set_CTS_pin(false); // Hardware data flowcontrol
   if (Serial.read() == start_marker){
     tmp_data = Serial.readStringUntil('>');
   }
+  set_CTS_pin(true);
+  is_recv = true;
 }
 
 // Data is separated into regulated, unregulated, and stepper motor structs
@@ -48,7 +51,7 @@ void Communication::parse_data(){
         regulated_param.peltier_state= atoi(data_contained);
         break;
       case 106:
-        regulated_param.peltier_mode= peltier_mode;
+        regulated_param.peltier_mode = data_contained[0];
         break;
       case 107:
         unregulated_param.linear_act= atoi(data_contained);
@@ -87,7 +90,6 @@ void Communication::parse_data(){
       default:
         break;
     }
-    
 }
 
 // Method for testing the communication class
@@ -106,7 +108,7 @@ void Communication::print_data(){
   Serial.print("Peltier state: ");
   Serial.println(regulated_param.peltier_state);
   Serial.print("Peltier mode: ");
-  Serial.println(regulated_param.peltier_mode[0]);
+  Serial.println(regulated_param.peltier_mode);
 
   // Unregulated parameters
   Serial.print("Linear act: ");
@@ -134,6 +136,8 @@ void Communication::print_data(){
 
   Serial.print("Step motor z2: ");
   Serial.println(step_motors.step_z2);
+
+  is_recv = false;
 }
 
 void Communication::read_raw_data(String received_dat){
@@ -146,4 +150,20 @@ void Communication::print_raw_data(){
   Serial.println(id_data);
   Serial.print("Data contained: ");
   Serial.println(data_contained);
+}
+
+
+// Hardware flow control methods
+void Communication::def_CTS_pin(int pin_num){
+  cts_pin = pin_num;
+  pinMode(pin_num, OUTPUT);
+}
+
+void Communication::set_CTS_pin(bool CTS_state){
+  if (CTS_state == true){
+    digitalWrite(cts_pin, HIGH);
+  }
+  else if (CTS_state == false){
+    digitalWrite(cts_pin, LOW);
+  }
 }

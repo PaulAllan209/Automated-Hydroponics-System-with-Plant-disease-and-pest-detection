@@ -12,7 +12,7 @@ data = {
     "water_pump_speed":0.5,
     
     "peltier_state":1,
-    "peltier_mode":"Cold",
+    "peltier_mode":"C",
     
     "linear_act":1,
     
@@ -32,9 +32,9 @@ data = {
     "step_z2":200
 }
 
-data2 = "<base,4>"
+data2 = "<100,576>"
 
-ArduinoComms.send_raw_data(data2)
+# ArduinoComms.send_raw_data(data2)
 
-# ArduinoComms.send_data(data)
+ArduinoComms.send_data(data)
 print(len(data))

@@ -4,8 +4,8 @@ from time import sleep
 
 
 class ArduinoMegaCommunication:
-    def __init__(self, port='/dev/ttyUSB0', baudrate=9600, xonxoff=True) -> None:
-        self.serial_port = serial.Serial(port, baudrate, xonxoff=xonxoff)
+    def __init__(self, port='/dev/ttyUSB0', baudrate=9600, rtscts=True) -> None:
+        self.serial_port = serial.Serial(port, baudrate, rtscts=rtscts)
         # self.serial_port.open()
         
         

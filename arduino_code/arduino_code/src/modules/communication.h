@@ -3,7 +3,6 @@
 class Communication{
     public:
     Communication();
-
     struct RegulatedParam{
         int base_peris_pump{0};
         int acid_peris_pump{0};
@@ -13,7 +12,7 @@ class Communication{
         float water_pump_speed{0};
 
         int peltier_state{0};
-        String peltier_mode{"Cold"};
+        char peltier_mode{'C'};
 
         int solenoid{0};
     };
@@ -49,36 +48,16 @@ class Communication{
     void read_raw_data(String received_dat);
     void print_raw_data();
 
+    // Hardware flow control methods
+    void def_CTS_pin(int pin_num);
+    void set_CTS_pin(bool CTS_state);
+
+    // State if there are received data
+    bool is_recv = false;
+
+    // Variables used inside the class
     private:
-    int baudrate;
-    int base_peris_pump;
-    int acid_peris_pump;
-    int nutriA_peris_pump;
-    int nutriB_peris_pump;
-
-    float water_pump_speed;
-
-    int peltier_state;
-    String peltier_mode;
-
-    int linear_act;
-
-    int grow_light_1;
-    int grow_light_2;
-
-    int air_pump;
-
-    int exhaust_fan_1;
-    int exhaust_fan_2;
-
-    int solenoid;
-
-    int step_x;
-    int step_y;
-    int step_z1;
-    int step_z2;
-
-
+    // Variables for parsing data
     char start_marker = '<';
     String tmp_data;
     static const int char_arr_size = 16;
@@ -88,4 +67,7 @@ class Communication{
     char* strt_ok_idx;
 
     String raw_data = "No data";
+
+    // CTS pin for flow control
+    int cts_pin;
 };
