@@ -16,7 +16,7 @@ void Communication::read_data(){
     tmp_data = Serial.readStringUntil('>');
   }
   set_CTS_pin(true);
-
+  is_recv = true;
 }
 
 // Data is separated into regulated, unregulated, and stepper motor structs
@@ -51,7 +51,7 @@ void Communication::parse_data(){
         regulated_param.peltier_state= atoi(data_contained);
         break;
       case 106:
-        regulated_param.peltier_mode= peltier_mode;
+        regulated_param.peltier_mode = data_contained[0];
         break;
       case 107:
         unregulated_param.linear_act= atoi(data_contained);
@@ -136,6 +136,8 @@ void Communication::print_data(){
 
   Serial.print("Step motor z2: ");
   Serial.println(step_motors.step_z2);
+
+  is_recv = false;
 }
 
 void Communication::read_raw_data(String received_dat){
