@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include "./modules/communication.h"
-// #include "./modules/parameter_controller.h"
+#include "./modules/step_motor.h"
 
 Communication communication;
 String received_dat;
@@ -18,8 +18,10 @@ void loop() {
   while (Serial.available() > 0){
     communication.read_data();
     communication.parse_data();
-    if (communication.is_recv){
-      communication.print_data();
-    }
+    // if (communication.is_recv){
+    //   communication.print_data();
+    // }
   }
+
+
 }
