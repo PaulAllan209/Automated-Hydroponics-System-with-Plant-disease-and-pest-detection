@@ -18,7 +18,5 @@ class RegulatedParam{
     void control_water_level();
 };
 
-class WowMagic{
-    public:
-    void print_serial();
+class UnregulatedParam{
 };

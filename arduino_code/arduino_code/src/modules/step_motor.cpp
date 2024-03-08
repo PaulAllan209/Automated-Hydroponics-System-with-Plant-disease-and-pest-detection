@@ -9,3 +9,6 @@ void StepMotor::receive_coords(int step_x, int step_y, int step_z1, int step_z2)
 
 void StepMotor::move_step_motors(){
 }
+
+void StepMotor::send_coords(){
+}

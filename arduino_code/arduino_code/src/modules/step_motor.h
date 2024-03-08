@@ -2,10 +2,11 @@
 
 class StepMotor{
     public:
-    int step_x;
-    int step_y;
-    int step_z1;
-    int step_z2;
+    // Curr coords
+    int curr_step_x;
+    int curr_step_y;
+    int curr_step_z1;
+    int curr_step_z2;
 
     // Target coords
     int recv_step_x;
