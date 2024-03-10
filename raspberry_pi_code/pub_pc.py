@@ -16,14 +16,17 @@ if client.connect("192.168.1.10", 1883) != 0:
 
 client.on_message = on_message
 # start a new thread
-client.publish(payload="wowmagic from pc", topic="esp32/light")
 counter = 0
-while True:
-    client.subscribe("esp32/light")
-    client.publish(payload=f"wowmagic from pc num={counter}", topic="esp32/light")
-    counter+=1
-    time.sleep(5)
-    # client.loop_forever()
+
+
+# Send image
+with open("raspberry_pi_code\images\mr_fresh.png", "rb") as mr_fresh:
+    image_content = mr_fresh.read()
+    byteArr = bytearray(image_content)
+    # print(byteArr)
+
+client.publish(payload=f"{byteArr}", topic="esp32/light")
+client.loop_forever()
     
 # client_subscriptions(client)
 print("......client setup complete............")
