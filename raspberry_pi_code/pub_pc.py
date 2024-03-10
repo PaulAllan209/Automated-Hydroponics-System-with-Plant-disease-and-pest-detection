@@ -25,7 +25,7 @@ with open("raspberry_pi_code\images\mr_fresh.png", "rb") as mr_fresh:
     byteArr = bytearray(image_content)
     # print(byteArr)
 
-client.publish(payload=f"{byteArr}", topic="esp32/light")
+client.publish(payload=f"{byteArr}", topic="esp32/mr_fresh")
 client.loop_forever()
     
 # client_subscriptions(client)

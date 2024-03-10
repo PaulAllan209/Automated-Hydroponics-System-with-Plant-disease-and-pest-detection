@@ -18,3 +18,4 @@ if client.connect("192.168.1.10", 1883) != 0:
 
 client.on_message = on_message
 
+client.subscribe("esp32/mr_fresh")
