@@ -26,6 +26,8 @@ with open("raspberry_pi_code\images\mr_fresh.png", "rb") as mr_fresh:
     base64_str = base64.b64encode(image_content).decode('utf-8')
     print(base64_str)
 
+
+# TODO: Check for single publish in the documentation might be useful because loop_forever() is just not flexible
 client.publish(payload=base64_str, topic="esp32/mr_fresh")
 client.loop_forever()
     
