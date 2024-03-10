@@ -1,6 +1,7 @@
 import paho.mqtt.client as mqtt
 import time
 import sys
+import base64
 
 def on_message(client, userdata, msg):
     received_message = msg.payload.decode()
@@ -22,10 +23,10 @@ counter = 0
 # Send image
 with open("raspberry_pi_code\images\mr_fresh.png", "rb") as mr_fresh:
     image_content = mr_fresh.read()
-    byteArr = bytearray(image_content)
-    # print(byteArr)
+    base64_str = base64.b64encode(image_content).decode('utf-8')
+    print(base64_str)
 
-client.publish(payload=f"wowmagic", topic="esp32/mr_fresh")
+client.publish(payload=base64_str, topic="esp32/mr_fresh")
 client.loop_forever()
     
 # client_subscriptions(client)
