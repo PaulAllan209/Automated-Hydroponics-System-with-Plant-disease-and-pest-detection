@@ -6,7 +6,7 @@ def on_message(client, userdata, msg):
     received_message = msg.payload.decode()
     print(f"messaged received: {received_message}")
 
-client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2, "rpi_client1") #this should be a unique name
+client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2, "rpi_client1") # bro change the name of this if it is on different devices
 flag_connected = 0
 
 
@@ -25,7 +25,7 @@ with open("raspberry_pi_code\images\mr_fresh.png", "rb") as mr_fresh:
     byteArr = bytearray(image_content)
     # print(byteArr)
 
-client.publish(payload=f"{byteArr}", topic="esp32/mr_fresh")
+client.publish(payload=f"wowmagic", topic="esp32/mr_fresh")
 client.loop_forever()
     
 # client_subscriptions(client)
