@@ -4,7 +4,7 @@
 
 Communication communication;
 String received_dat;
-int CTS_pin{13};
+int CTS_pin{7};
 
 // Millis variables for delaying
 
@@ -15,7 +15,7 @@ void setup() {
 }
 
 void loop() {
-  while (Serial.available() > 0){
+  while (Serial1.available() > 0){
     communication.read_data();
     communication.parse_data();
     if (communication.is_recv){
