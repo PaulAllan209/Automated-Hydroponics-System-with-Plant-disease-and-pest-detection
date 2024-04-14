@@ -1,8 +1,11 @@
 #include <Arduino.h>
 #include "./modules/communication.h"
 #include "./modules/step_motor.h"
+#include "./modules/parameter_controller.h"
 
-Communication communication;
+static Communication communication;
+RegulatedParam RegParam(communication); //TODO: This line is causing problems with the communication protocol
+UnregulatedParam UnregParam(communication);
 String received_dat;
 int CTS_pin{7};
 
@@ -12,6 +15,9 @@ int CTS_pin{7};
 void setup() {
   communication.def_CTS_pin(CTS_pin);
   communication.serial_begin();
+  UnregParam.set_pins();
+
+  pinMode(13, OUTPUT);
 }
 
 void loop() {
@@ -20,8 +26,14 @@ void loop() {
     communication.parse_data();
     if (communication.is_recv){
       communication.print_data();
+      RegParam.test_print();
+      UnregParam.set_outputs();
     }
   }
+
+  // delay(1000);
+  // delay(500);
+  // analogWrite(13, 0);
 
 
 }

@@ -55,3 +55,20 @@ void RegulatedParam::control_water_temp(){
 
 void RegulatedParam::control_water_level(){
 }
+
+void RegulatedParam::set_pins(){
+    // Analog pins read
+    pinMode(base_peris_pump, INPUT);
+    pinMode(acid_peris_pump, INPUT);
+    pinMode(nutriA_peris_pump, INPUT);
+    pinMode(nutriB_peris_pump, INPUT);
+    pinMode(water_pump, INPUT);
+
+}
+
+void RegulatedParam::test_print(){
+    Serial.println(comm1.unregulated_param.linear_act);
+}
+RegulatedParam::RegulatedParam(Communication& comm1_input) : comm1(comm1_input){
+}
+

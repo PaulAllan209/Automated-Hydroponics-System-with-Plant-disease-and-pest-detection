@@ -8,12 +8,12 @@
 			"path": "arduino_code/arduino_code"
 		},
 		{
-			"name": "ESP32_CAM_code",
-			"path": "esp32_cam_code/ESP32_CAM_code"
-		},
-		{
 			"name": "arduino_mega_code",
 			"path": "arduino_mega_code"
+		},
+		{
+			"name": "esp_32_cam",
+			"path": "esp_32_cam"
 		}
 	],
 	"settings": {}
