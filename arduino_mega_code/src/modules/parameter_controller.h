@@ -34,7 +34,7 @@ class RegulatedParam{
     int nutriA_peris_pump{0};
     int nutriB_peris_pump{0};
     int water_pump{0};
-    float water_pump_speed{0};
+    int water_pump_speed{0};
 
     int peltier_state{0};
     String peltier_mode{"Cold"};
