@@ -1,4 +1,5 @@
 #pragma once
+#include <MultiStepper.h>
 
 class StepMotor{
     public:

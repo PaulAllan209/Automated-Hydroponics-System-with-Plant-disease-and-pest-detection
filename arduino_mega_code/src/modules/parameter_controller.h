@@ -9,12 +9,28 @@ class RegulatedParam{
     RegulatedParam(Communication& comm1_input);
 
     // pin numbers analog read
-    int base_peris_pump{54};
-    int acid_peris_pump{55};
-    int nutriA_peris_pump{56};
-    int nutriB_peris_pump{57};
-    int water_pump{58};
+    int ARbase_peris_pump{54};
+    int ARacid_peris_pump{55};
+    int ARnutriA_peris_pump{56};
+    int ARnutriB_peris_pump{57};
+    int ARwater_pump{58};
 
+    // pin numbers digital out
+    int DObase_peris_pump{53};
+    int DOacid_peris_pump{52};
+    int DOnutriA_peris_pump{50};
+    int DOnutriB_peris_pump{51};
+    int AOwater_pump{2};
+    int AOwater_pump_peltier{3};
+
+
+
+    // placeholders for printing the values (will be soon deleted due to changes in the pumps code logic)
+    int base_peris_pump{0};
+    int acid_peris_pump{0};
+    int nutriA_peris_pump{0};
+    int nutriB_peris_pump{0};
+    int water_pump{0};
     float water_pump_speed{0};
 
     int peltier_state{0};

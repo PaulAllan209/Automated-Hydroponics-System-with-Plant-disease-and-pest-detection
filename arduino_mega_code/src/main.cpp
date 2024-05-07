@@ -15,6 +15,7 @@ int CTS_pin{7};
 void setup() {
   communication.def_CTS_pin(CTS_pin);
   communication.serial_begin();
+  RegParam.set_pins();
   UnregParam.set_pins();
 
   pinMode(13, OUTPUT);
@@ -30,6 +31,10 @@ void loop() {
       UnregParam.set_outputs();
     }
   }
+  RegParam.control_pH();
+  RegParam.control_EC();
+
+
 
   // delay(1000);
   // delay(500);
