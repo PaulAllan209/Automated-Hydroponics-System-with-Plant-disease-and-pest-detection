@@ -55,12 +55,14 @@ class UnregulatedParam{
     UnregulatedParam(Communication& comm1_input);
 
     // pin numbers
-    int linear_act{21};
+    int linear_act_DPDT_1{26};
+    int linear_act_DPDT_2{27};
     int grow_light_1{24};
     int grow_light_2{23};
+    int grow_light_conventional{20};
     int air_pump{22};
     int exhaust_fan_1{25};
-    int exhaust_fan_2{26};
+    int exhaust_fan_2{21};
 
     void set_pins();
     void set_outputs();
