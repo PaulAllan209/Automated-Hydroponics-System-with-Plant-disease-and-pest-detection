@@ -82,11 +82,6 @@ void RegulatedParam::control_EC(){
     if (RVnutriB_pump < 200){
         digitalWrite(DOnutriB_peris_pump, LOW);
     }
-
-    
-
-
-
 }
 
 void RegulatedParam::control_water_temp(){
