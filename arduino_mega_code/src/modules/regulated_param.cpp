@@ -109,7 +109,13 @@ void RegulatedParam::set_pins(){
     pinMode(DOnutriA_peris_pump, OUTPUT);
     pinMode(DOnutriB_peris_pump, OUTPUT);
     pinMode(AOwater_pump, OUTPUT);
+    pinMode(AOwater_pump_peltier, OUTPUT);
 
+    // Digital pins out
+    pinMode(peltier_DPDT_1, OUTPUT);
+    pinMode(peltier_DPDT_2, OUTPUT);
+    pinMode(peltier_switch, OUTPUT);
+    pinMode(solenoid_valve, OUTPUT);
 }
 
 void RegulatedParam::test_print(){

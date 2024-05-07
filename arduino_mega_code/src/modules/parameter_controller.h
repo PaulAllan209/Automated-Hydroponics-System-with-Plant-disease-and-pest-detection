@@ -23,6 +23,10 @@ class RegulatedParam{
     int AOwater_pump{2};
     int AOwater_pump_peltier{3};
 
+    int peltier_DPDT_1{28};
+    int peltier_DPDT_2{29};
+    int peltier_switch{30};
+    int solenoid_valve{31};
 
 
     // placeholders for printing the values (will be soon deleted due to changes in the pumps code logic)
