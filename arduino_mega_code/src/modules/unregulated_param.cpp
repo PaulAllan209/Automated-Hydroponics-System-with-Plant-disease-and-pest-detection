@@ -32,17 +32,17 @@ void UnregulatedParam::set_outputs(){
         digitalWrite(linear_act_DPDT_2, HIGH);
     }
 
-    if (comm1.unregulated_param.grow_light_1 == 1){
+    if (comm1.unregulated_param.grow_light_1 == 0){
         digitalWrite(grow_light_1, LOW);
     }
-    else if (comm1.unregulated_param.grow_light_1 == 0){
+    else if (comm1.unregulated_param.grow_light_1 == 1){
         digitalWrite(grow_light_1, HIGH);
     }
 
-    if (comm1.unregulated_param.grow_light_2 == 1){
+    if (comm1.unregulated_param.grow_light_2 == 0){
         digitalWrite(grow_light_2, LOW);
     }
-    else if (comm1.unregulated_param.grow_light_2 == 0){
+    else if (comm1.unregulated_param.grow_light_2 == 1){
         digitalWrite(grow_light_2, HIGH);
     }
 
