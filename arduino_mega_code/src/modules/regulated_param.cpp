@@ -90,6 +90,12 @@ void RegulatedParam::control_water_temp(){
 void RegulatedParam::control_water_level(){
 }
 
+void RegulatedParam::control_water_flow_rate(){
+    int flow_val = analogRead(ARwater_pump);
+    int mapped_val = map(flow_val, 0, 1023, 0, 255);
+    analogWrite(AOwater_pump, mapped_val);
+}
+
 void RegulatedParam::set_pins(){
     // Analog pins read
     pinMode(ARbase_peris_pump, INPUT);

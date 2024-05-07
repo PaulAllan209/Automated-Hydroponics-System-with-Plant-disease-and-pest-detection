@@ -2,7 +2,6 @@
 #include <Arduino.h>
 #include "./modules/communication.h"
 
-
 class RegulatedParam{
     public:
     Communication& comm1;
@@ -48,6 +47,7 @@ class RegulatedParam{
 
     void control_water_temp();
     void control_water_level();
+    void control_water_flow_rate();
 
     void set_pins();
     void test_print();

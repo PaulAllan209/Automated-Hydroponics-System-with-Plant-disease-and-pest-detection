@@ -33,6 +33,7 @@ void loop() {
   }
   RegParam.control_pH();
   RegParam.control_EC();
+  RegParam.control_water_flow_rate();
 
 
 
