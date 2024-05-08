@@ -52,7 +52,7 @@ void RegulatedParam::control_pH(){
     if (RVbase_pump > 200){
         digitalWrite(DObase_peris_pump, HIGH);
     }
-    else if (RVacid_pump > 200){
+    if (RVacid_pump > 200){
         digitalWrite(DOacid_peris_pump, HIGH);
     }
 
@@ -60,7 +60,7 @@ void RegulatedParam::control_pH(){
     if (RVbase_pump < 200){
         digitalWrite(DObase_peris_pump, LOW);
     }
-    else if (RVacid_pump < 200){
+    if (RVacid_pump < 200){
         digitalWrite(DOacid_peris_pump, LOW);
     }
 }
