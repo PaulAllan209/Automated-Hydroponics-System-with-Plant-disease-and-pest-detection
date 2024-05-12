@@ -18,7 +18,7 @@ class RegulatedParam{
     int DObase_peris_pump{53};
     int DOacid_peris_pump{52};
     int DOnutriA_peris_pump{50};
-    int DOnutriB_peris_pump{51};
+    int DOnutriB_peris_pump{49};
     int AOwater_pump{2};
     int AOwater_pump_peltier{3};
 
