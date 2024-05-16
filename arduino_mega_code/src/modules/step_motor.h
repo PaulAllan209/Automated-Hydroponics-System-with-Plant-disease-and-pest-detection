@@ -1,5 +1,6 @@
 #pragma once
 #include <MultiStepper.h>
+#include <AccelStepper.h>
 
 class StepMotor{
     public:
@@ -22,9 +23,12 @@ class StepMotor{
     unsigned long time_counter2;
     unsigned long step_speed = {10};
 
+    bool gantry_debug_state{false};
+
 
     void receive_coords(int step_x, int step_y, int step_z1, int step_z2);
     void send_coords();
     void move_step_motors();
     bool check_coords(); // returns true and sends message to serial if the coords matches with the received coords
+    void debug_mode();
 };

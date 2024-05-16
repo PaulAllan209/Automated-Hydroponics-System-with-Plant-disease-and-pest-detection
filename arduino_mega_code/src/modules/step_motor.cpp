@@ -12,3 +12,9 @@ void StepMotor::move_step_motors(){
 
 void StepMotor::send_coords(){
 }
+
+void StepMotor::debug_mode(){
+    if (gantry_debug_state==true){
+        Serial.read();
+    }
+}

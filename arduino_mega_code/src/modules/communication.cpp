@@ -87,6 +87,8 @@ void Communication::parse_data(){
       case 117:
         step_motors.step_z2= atoi(data_contained);
         break;
+      case 118:
+      
       
       default:
         break;
