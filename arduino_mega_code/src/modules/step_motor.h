@@ -5,15 +5,15 @@
 class StepMotor{
     public:
     // Pins
-    int x_axis_pulse{33};
-    int x_axis_dir{34};
-    int z1_axis_pulse{35};
-    int z1_axis_dir{36};
-    int z2_axis_pulse{37};
-    int z2_axis_dir{38};
-    int y_axis_pulse{39};
-    int y_axis_dir{40};
-    int enable_pin{41};
+    uint8_t x_axis_pulse{33};
+    uint8_t x_axis_dir{34};
+    uint8_t z1_axis_pulse{35};
+    uint8_t z1_axis_dir{36};
+    uint8_t z2_axis_pulse{37};
+    uint8_t z2_axis_dir{38};
+    uint8_t y_axis_pulse{39};
+    uint8_t y_axis_dir{40};
+    uint8_t enable_pin{41};
 
     // Curr coords
     int curr_step_x;
@@ -38,12 +38,12 @@ class StepMotor{
 
     // Stepper motor classes
     // (motor interface ,pulse_pin, dir_pin)
-    // Motor interface is 1 meaning i have a stepper motor driver
-    int motor_interface{1};
-    AccelStepper step_x(motor_interface, x_axis_pulse, x_axis_dir);
-    AccelStepper step_z1(motor_interface, z1_axis_pulse, z1_axis_dir);
-    AccelStepper step_z2(motor_interface, z2_axis_pulse, z2_axis_dir);
-    AccelStepper step_y(motor_interface, y_axis_pulse, y_axis_dir);
+    // Apparently using curly braces in the classes fixes errors in the code
+    int motor_interface{1}; // motor interface is in driver mode
+    AccelStepper step_x{1, x_axis_pulse, x_axis_dir};
+    AccelStepper step_z1{1, z1_axis_pulse, z1_axis_dir};
+    AccelStepper step_z2{1, z2_axis_pulse, z2_axis_dir};
+    AccelStepper step_y{1, y_axis_pulse, y_axis_dir};
 
     MultiStepper stepper_motors;
 

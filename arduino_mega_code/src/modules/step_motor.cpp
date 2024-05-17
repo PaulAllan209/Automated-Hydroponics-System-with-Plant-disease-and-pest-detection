@@ -41,35 +41,36 @@ void StepMotor::debug_mode(){
             dir_key = Serial.read();
 
             if (dir_key == 'w'){
-                step_x.set_speed(1000);
+                step_x.setSpeed(1000);
                 step_x.runSpeed();
             }
             else if (dir_key == 's'){
-                step_x.set_speed(-1000);
+                step_x.setSpeed(-1000);
                 step_x.runSpeed(); 
             }
 
             else if (dir_key == 'a'){
-                step_y.set_speed(1000);
+                step_y.setSpeed(1000);
                 step_y.runSpeed(); 
             }
             else if (dir_key == 'd'){
-                step_y.set_speed(-1000);
+                step_y.setSpeed(-1000);
                 step_y.runSpeed(); 
             }
 
             else if (dir_key == 't'){
-                step_z1.set_speed(1000);
+                step_z1.setSpeed(1000);
                 step_z1.runSpeed();
-                step_z2.set_speed(1000);
+                step_z2.setSpeed(1000);
                 step_z2.runSpeed(); 
             }
             else if (dir_key == 'g'){
-                step_z1.set_speed(-1000);
+                step_z1.setSpeed(-1000);
                 step_z1.runSpeed();
-                step_z2.set_speed(-1000);
+                step_z2.setSpeed(-1000);
                 step_z2.runSpeed();  
             }
+            
             Serial.print("Step x pos: ");
             Serial.println(step_x.currentPosition());
 
