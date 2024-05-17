@@ -45,7 +45,10 @@ class StepMotor{
     AccelStepper step_z2(motor_interface, z2_axis_pulse, z2_axis_dir);
     AccelStepper step_y(motor_interface, y_axis_pulse, y_axis_dir);
 
+    MultiStepper stepper_motors;
+
     void set_enable_pins();
+    void add_stepper_motors();
     void receive_coords(int step_x, int step_y, int step_z1, int step_z2);
     void send_coords();
     void move_step_motors();

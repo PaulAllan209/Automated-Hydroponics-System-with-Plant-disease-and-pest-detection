@@ -7,6 +7,20 @@ void StepMotor::set_enable_pins(){
     step_y.setEnablePin(enable_pin);
 }
 
+void StepMotor::add_stepper_motors(){
+    // Order of adding stepper motor
+    // x
+    // z1
+    // z2
+    // y
+    stepper_motors.addStepper(step_x);
+    stepper_motors.addStepper(step_z1);
+    stepper_motors.addStepper(step_z2);
+    stepper_motors.addStepper(step_y);
+}
+
+
+
 void StepMotor::receive_coords(int step_x, int step_y, int step_z1, int step_z2){
     recv_step_x = step_x;
     recv_step_y = step_y;
@@ -27,8 +41,45 @@ void StepMotor::debug_mode(){
             dir_key = Serial.read();
 
             if (dir_key == 'w'){
-
+                step_x.set_speed(1000);
+                step_x.runSpeed();
             }
+            else if (dir_key == 's'){
+                step_x.set_speed(-1000);
+                step_x.runSpeed(); 
+            }
+
+            else if (dir_key == 'a'){
+                step_y.set_speed(1000);
+                step_y.runSpeed(); 
+            }
+            else if (dir_key == 'd'){
+                step_y.set_speed(-1000);
+                step_y.runSpeed(); 
+            }
+
+            else if (dir_key == 't'){
+                step_z1.set_speed(1000);
+                step_z1.runSpeed();
+                step_z2.set_speed(1000);
+                step_z2.runSpeed(); 
+            }
+            else if (dir_key == 'g'){
+                step_z1.set_speed(-1000);
+                step_z1.runSpeed();
+                step_z2.set_speed(-1000);
+                step_z2.runSpeed();  
+            }
+            Serial.print("Step x pos: ");
+            Serial.println(step_x.currentPosition());
+
+            Serial.print("Step z1 pos: ");
+            Serial.println(step_z1.currentPosition());
+            Serial.print("Step z2 pos: ");
+            Serial.println(step_z2.currentPosition());
+
+            Serial.print("Step y pos: ");
+            Serial.println(step_y.currentPosition());
         }
     }
 }
