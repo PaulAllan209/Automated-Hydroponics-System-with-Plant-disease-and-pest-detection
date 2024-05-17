@@ -4,6 +4,12 @@
 
 class StepMotor{
     public:
+    // Pins
+    int x_axis_pulse{33};
+    
+
+
+
     // Curr coords
     int curr_step_x;
     int curr_step_y;
@@ -23,9 +29,15 @@ class StepMotor{
     unsigned long time_counter2;
     unsigned long step_speed = {10};
 
-    bool gantry_debug_state{false};
+    bool gantry_debug_state{false}; // when setting the coordinates for the plants
 
+    // Stepper motor classes
+    // (motor interface ,pulse_pin, dir_pin)
+    // Motor interface is 1 meaning i have a stepper motor driver
+    int motor_interface{1};
+    AccelStepper step_x(motor_interface, )
 
+    void set_pins();
     void receive_coords(int step_x, int step_y, int step_z1, int step_z2);
     void send_coords();
     void move_step_motors();

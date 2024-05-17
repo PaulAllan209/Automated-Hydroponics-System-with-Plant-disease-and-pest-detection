@@ -15,6 +15,13 @@ void StepMotor::send_coords(){
 
 void StepMotor::debug_mode(){
     if (gantry_debug_state==true){
-        Serial.read();
+        if (Serial.available() > 0){
+            char dir_key;
+            dir_key = Serial.read();
+
+            if (dir_key == 'w'){
+                
+            }
+        }
     }
 }
