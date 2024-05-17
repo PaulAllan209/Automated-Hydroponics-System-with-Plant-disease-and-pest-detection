@@ -59,6 +59,7 @@ class ArduinoMegaCommunication:
         step_y = arduino_data["step_y"]
         step_z1 = arduino_data["step_z1"]
         step_z2 = arduino_data["step_z2"]
+        gantry_debug_state = arduino_data["gantry_debug_state"]
         
         a = f'<100,{base_peris_pump}>'
         b = f'<101,{acid_peris_pump}>'
@@ -78,6 +79,7 @@ class ArduinoMegaCommunication:
         p = f'<115,{step_y}>'
         q = f'<116,{step_z1}>'
         r = f'<117,{step_z2}>'
+        s = f'<118,{gantry_debug_state}>'
         
         self.serial_port.write(a.encode('utf-8'))
         self.serial_port.write(b.encode('utf-8'))

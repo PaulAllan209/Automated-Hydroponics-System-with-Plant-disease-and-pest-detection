@@ -18,9 +18,9 @@ plant10 = []
 
 # Function for sending the position for the plants
 
-# Funciton for receiving the current position and comparing if it already matches the plant position
 
-# Function for the esp32 cam to take pictures
+# Function for the esp32 cam to take pictures and checks if it already received an image
+
 
 # Function for creation of directory
 
