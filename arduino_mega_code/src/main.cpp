@@ -4,6 +4,7 @@
 #include "./modules/parameter_controller.h"
 
 static Communication communication;
+StepMotor all_motors(communication);
 RegulatedParam RegParam(communication); //TODO: This line is causing problems with the communication protocol
 UnregulatedParam UnregParam(communication);
 String received_dat;
@@ -19,6 +20,7 @@ void setup() {
   UnregParam.set_pins();
 
   pinMode(13, OUTPUT);
+  all_motors.gantry_debug_state = true;
 }
 
 void loop() {
@@ -31,6 +33,7 @@ void loop() {
       UnregParam.set_outputs();
     }
   }
+  all_motors.debug_mode();
   RegParam.control_pH();
   RegParam.control_EC();
   RegParam.control_water_flow_rate();

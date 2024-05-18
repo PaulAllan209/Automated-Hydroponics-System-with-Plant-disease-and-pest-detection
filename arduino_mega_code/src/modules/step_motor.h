@@ -4,6 +4,9 @@
 
 class StepMotor{
     public:
+    Communication& comm1;
+    RegulatedParam(Communication& comm1_input);
+
     // Pins
     uint8_t x_axis_pulse{33};
     uint8_t x_axis_dir{34};
@@ -34,7 +37,7 @@ class StepMotor{
     unsigned long time_counter2;
     unsigned long step_speed = {10};
 
-    bool gantry_debug_state{false}; // when setting the coordinates for the plants
+    int gantry_debug_state{0}; // when setting the coordinates for the plants
 
     // Stepper motor classes
     // (motor interface ,pulse_pin, dir_pin)

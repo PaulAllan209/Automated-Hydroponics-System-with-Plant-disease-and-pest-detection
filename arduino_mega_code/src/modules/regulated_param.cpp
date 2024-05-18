@@ -74,6 +74,7 @@ void RegulatedParam::control_EC(){
     }
     if (RVnutriB_pump > 200){
         digitalWrite(DOnutriB_peris_pump, HIGH);
+        Serial1.println("NutriB was high!");
     }
 
     if (RVnutriA_pump < 200){

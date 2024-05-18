@@ -34,6 +34,7 @@ class Communication{
         int step_y{0};
         int step_z1{0};
         int step_z2{0};
+        int debug_state{0};
     };
 
     RegulatedParam regulated_param;

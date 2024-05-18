@@ -35,6 +35,7 @@ void StepMotor::send_coords(){
 }
 
 void StepMotor::debug_mode(){
+    gantry_debug_state = comm1.step_motors.debug_state;
     if (gantry_debug_state==true){
         if (Serial.available() > 0){
             char dir_key;
