@@ -9,7 +9,6 @@
 
 // Millis variables for delaying
 
-// AccelStepper classeseeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeerd                                  1 11111111111111111111111111111111w                                                                                                                                                                                                                                                                                                                                                                                                    `
 AccelStepper zaxis1(1, 2, 3);
 AccelStepper zaxis2(1, 4, 5);
 
