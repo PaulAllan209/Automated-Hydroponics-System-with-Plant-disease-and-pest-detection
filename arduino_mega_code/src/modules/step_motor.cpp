@@ -77,7 +77,6 @@ void StepMotor::debug_mode(){
             step_y.setSpeed(-1000);
             step_y.runSpeed(); 
         }
-
         else if (dir_key == 't'){
             step_z1.setSpeed(1000);
             step_z1.runSpeed();
@@ -89,6 +88,28 @@ void StepMotor::debug_mode(){
             step_z1.runSpeed();
             step_z2.setSpeed(-1000);
             step_z2.runSpeed();  
+        }
+
+        // Test positions
+        else if(dir_key == 'z'){
+            positions[0] = 200;
+            positions[1] = 200;
+            positions[2] = 200;
+            positions[3] = 200;
+        }
+
+        else if(dir_key == 'x'){
+            positions[0] = 500;
+            positions[1] = 500;
+            positions[2] = 500;
+            positions[3] = 500;
+        }
+
+        else if(dir_key == 'c'){
+            positions[0] = 150;
+            positions[1] = 150;
+            positions[2] = 150;
+            positions[3] = 150;
         }
     }
 }

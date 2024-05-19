@@ -32,6 +32,7 @@ class StepMotor{
 
     // debug mode
     char dir_key;
+    long positions[4];
 
     bool coords_is_equal = true; // state for checking if the stepper motor coords are equal to the sent by raspberry pi
 
