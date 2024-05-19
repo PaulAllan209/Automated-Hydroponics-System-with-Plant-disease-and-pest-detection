@@ -20,6 +20,7 @@ void StepMotor::add_stepper_motors(){
     stepper_motors.addStepper(step_z1);
     stepper_motors.addStepper(step_z2);
     stepper_motors.addStepper(step_y);
+
 }
 
 
@@ -39,7 +40,11 @@ void StepMotor::send_coords(){
 
 void StepMotor::debug_mode(){
     // gantry_debug_state = comm1_input.step_motors.debug_state;
-    char dir_key;
+    step_x.setMaxSpeed(1000);
+    step_z1.setMaxSpeed(1000);
+    step_z2.setMaxSpeed(1000);
+    step_y.setMaxSpeed(1000);
+
     if (gantry_debug_state==true){
         if (Serial.available() > 0){
             dir_key = Serial.read();

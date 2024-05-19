@@ -30,6 +30,9 @@ class StepMotor{
     int recv_step_z1;
     int recv_step_z2;
 
+    // debug mode
+    char dir_key;
+
     bool coords_is_equal = true; // state for checking if the stepper motor coords are equal to the sent by raspberry pi
 
     // Stepper motor speed parameters

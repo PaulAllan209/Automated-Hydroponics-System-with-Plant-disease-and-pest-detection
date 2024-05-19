@@ -12,13 +12,13 @@ void UnregulatedParam::set_pins(){
     pinMode(exhaust_fan_1, OUTPUT);
     pinMode(exhaust_fan_2, OUTPUT);
 
-    digitalWrite(linear_act_DPDT_1, HIGH);
-    digitalWrite(linear_act_DPDT_1, HIGH);
-    digitalWrite(grow_light_1, HIGH);
-    digitalWrite(grow_light_2, HIGH);
-    digitalWrite(air_pump, HIGH);
-    digitalWrite(exhaust_fan_1, HIGH);
-    digitalWrite(exhaust_fan_2, HIGH);
+    digitalWrite(linear_act_DPDT_1, LOW);
+    digitalWrite(linear_act_DPDT_2, LOW);
+    digitalWrite(grow_light_1, LOW);
+    digitalWrite(grow_light_2, LOW);
+    digitalWrite(air_pump, LOW);
+    digitalWrite(exhaust_fan_1, LOW);
+    digitalWrite(exhaust_fan_2, LOW);
 }
 void UnregulatedParam::set_outputs(){
     // Due to the active low input of the relays. The states are reversed
