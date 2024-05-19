@@ -1,8 +1,6 @@
 #include <Arduino.h>
-#include "./modules/communication.h"
-#include "./modules/step_motor.h"
-#include <AccelStepper.h>
 
+<<<<<<< Updated upstream
 // Communication communication;
 // String received_dat;
 // int CTS_pin{13};
@@ -56,6 +54,27 @@ void loop() {
    zaxis2.setSpeed(-1000);
    zaxis2.runSpeed();
   }
+=======
+int p_num{80};
+>>>>>>> Stashed changes
 
+void setup(){
+    Serial.begin(9600);
+    pinMode(LED_BUILTIN, OUTPUT);
+    pinMode(8, INPUT);
+    digitalWrite(LED_BUILTIN, HIGH);
 
+}
+
+void loop(){
+    while (Serial.available() > 0){
+        if (Serial.read() == 's'){
+            digitalWrite(2, LOW);
+        }
+    }
+    if (digitalRead(8) == HIGH){
+        Serial.write(p_num);
+        
+        p_num+=1;
+    }
 }

@@ -14,6 +14,9 @@
 		{
 			"name": "esp_32_cam",
 			"path": "esp_32_cam"
+		},
+		{
+			"path": "raspberry_pi_code"
 		}
 	],
 	"settings": {}
