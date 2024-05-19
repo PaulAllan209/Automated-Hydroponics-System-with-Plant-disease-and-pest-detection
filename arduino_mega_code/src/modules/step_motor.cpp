@@ -1,5 +1,8 @@
 #include "./modules/step_motor.h"
 
+// StepMotor::StepMotor(Communication& comm1_input) : comm1(comm1_input){
+// }
+
 void StepMotor::set_enable_pins(){
     step_x.setEnablePin(enable_pin);
     step_z1.setEnablePin(enable_pin);
@@ -35,43 +38,11 @@ void StepMotor::send_coords(){
 }
 
 void StepMotor::debug_mode(){
-    gantry_debug_state = comm1.step_motors.debug_state;
+    // gantry_debug_state = comm1_input.step_motors.debug_state;
+    char dir_key;
     if (gantry_debug_state==true){
         if (Serial.available() > 0){
-            char dir_key;
             dir_key = Serial.read();
-
-            if (dir_key == 'w'){
-                step_x.setSpeed(1000);
-                step_x.runSpeed();
-            }
-            else if (dir_key == 's'){
-                step_x.setSpeed(-1000);
-                step_x.runSpeed(); 
-            }
-
-            else if (dir_key == 'a'){
-                step_y.setSpeed(1000);
-                step_y.runSpeed(); 
-            }
-            else if (dir_key == 'd'){
-                step_y.setSpeed(-1000);
-                step_y.runSpeed(); 
-            }
-
-            else if (dir_key == 't'){
-                step_z1.setSpeed(1000);
-                step_z1.runSpeed();
-                step_z2.setSpeed(1000);
-                step_z2.runSpeed(); 
-            }
-            else if (dir_key == 'g'){
-                step_z1.setSpeed(-1000);
-                step_z1.runSpeed();
-                step_z2.setSpeed(-1000);
-                step_z2.runSpeed();  
-            }
-            
             Serial.print("Step x pos: ");
             Serial.println(step_x.currentPosition());
 
@@ -82,6 +53,37 @@ void StepMotor::debug_mode(){
 
             Serial.print("Step y pos: ");
             Serial.println(step_y.currentPosition());
+        }
+
+        if (dir_key == 'w'){
+                step_x.setSpeed(1000);
+                step_x.runSpeed();
+        }
+        else if (dir_key == 's'){
+            step_x.setSpeed(-1000);
+            step_x.runSpeed(); 
+        }
+
+        else if (dir_key == 'a'){
+            step_y.setSpeed(1000);
+            step_y.runSpeed(); 
+        }
+        else if (dir_key == 'd'){
+            step_y.setSpeed(-1000);
+            step_y.runSpeed(); 
+        }
+
+        else if (dir_key == 't'){
+            step_z1.setSpeed(1000);
+            step_z1.runSpeed();
+            step_z2.setSpeed(1000);
+            step_z2.runSpeed(); 
+        }
+        else if (dir_key == 'g'){
+            step_z1.setSpeed(-1000);
+            step_z1.runSpeed();
+            step_z2.setSpeed(-1000);
+            step_z2.runSpeed();  
         }
     }
 }

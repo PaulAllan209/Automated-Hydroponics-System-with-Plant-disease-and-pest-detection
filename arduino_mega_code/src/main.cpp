@@ -4,7 +4,7 @@
 #include "./modules/parameter_controller.h"
 
 static Communication communication;
-StepMotor all_motors(communication);
+StepMotor all_motors;
 RegulatedParam RegParam(communication); //TODO: This line is causing problems with the communication protocol
 UnregulatedParam UnregParam(communication);
 String received_dat;

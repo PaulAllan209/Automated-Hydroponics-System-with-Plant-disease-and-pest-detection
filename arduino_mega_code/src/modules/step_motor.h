@@ -4,8 +4,8 @@
 
 class StepMotor{
     public:
-    Communication& comm1;
-    RegulatedParam(Communication& comm1_input);
+    // Communication& comm1;
+    // RegulatedParam(Communication& comm1_input);
 
     // Pins
     uint8_t x_axis_pulse{33};
