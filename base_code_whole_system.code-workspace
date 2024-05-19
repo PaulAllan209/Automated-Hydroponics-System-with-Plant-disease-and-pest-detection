@@ -17,7 +17,15 @@
 		},
 		{
 			"path": "raspberry_pi_code"
+		},
+		{
+			"name": "ESP32_pH",
+			"path": "ESP32_pH"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"files.associations": {
+			"complex": "cpp"
+		}
+	}
 }

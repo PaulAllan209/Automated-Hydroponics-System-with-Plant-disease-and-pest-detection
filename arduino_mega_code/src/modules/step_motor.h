@@ -30,6 +30,67 @@ class StepMotor{
     int recv_step_z1;
     int recv_step_z2;
 
+    // coords each plants
+    // Plant 1
+    int p1_x;
+    int p1_z1;
+    int p1_z2;
+    int p1_y;
+
+    // Plant 2
+    int p2_x{-30};
+    int p2_z1{200};
+    int p2_z2{200};
+    int p2_y{30};
+
+    // Plant 3
+    int p3_x;
+    int p3_z1;
+    int p3_z2;
+    int p3_y;
+
+    // Plant 4
+    int p4_x;
+    int p4_z1;
+    int p4_z2;
+    int p4_y;
+
+    // Plant 5
+    int p5_x;
+    int p5_z1;
+    int p5_z2;
+    int p5_y;
+
+    // Plant 6
+    int p6_x;
+    int p6_z1;
+    int p6_z2;
+    int p6_y;
+
+    // Plant 7
+    int p7_x;
+    int p7_z1;
+    int p7_z2;
+    int p7_y;
+
+    // Plant 8
+    int p8_x;
+    int p8_z1;
+    int p8_z2;
+    int p8_y;
+
+    // Plant 9
+    int p9_x;
+    int p9_z1;
+    int p9_z2;
+    int p9_y;
+
+    // Plant 10
+    int p10_x;
+    int p10_z1;
+    int p10_z2;
+    int p10_y;
+
     // debug mode
     char dir_key;
     long positions[4];
@@ -57,8 +118,7 @@ class StepMotor{
     void set_enable_pins();
     void add_stepper_motors();
     void receive_coords(int step_x, int step_y, int step_z1, int step_z2);
-    void send_coords();
-    void move_step_motors();
+    void capture_all_plants();
     bool check_coords(); // returns true and sends message to serial if the coords matches with the received coords
     void debug_mode();
 };

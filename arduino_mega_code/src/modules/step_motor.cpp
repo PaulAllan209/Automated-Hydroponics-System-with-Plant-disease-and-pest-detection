@@ -32,18 +32,13 @@ void StepMotor::receive_coords(int step_x, int step_y, int step_z1, int step_z2)
     recv_step_z2 = step_z2;
 }
 
-void StepMotor::move_step_motors(){
-}
-
-void StepMotor::send_coords(){
-}
 
 void StepMotor::debug_mode(){
     // gantry_debug_state = comm1_input.step_motors.debug_state;
-    step_x.setMaxSpeed(1000);
-    step_z1.setMaxSpeed(1000);
-    step_z2.setMaxSpeed(1000);
-    step_y.setMaxSpeed(1000);
+    step_x.setMaxSpeed(250);
+    step_z1.setMaxSpeed(8000);
+    step_z2.setMaxSpeed(8000);
+    step_y.setMaxSpeed(250);
 
     if (gantry_debug_state==true){
         if (Serial.available() > 0){
@@ -61,55 +56,52 @@ void StepMotor::debug_mode(){
         }
 
         if (dir_key == 'w'){
-                step_x.setSpeed(1000);
+                step_x.setSpeed(250);
                 step_x.runSpeed();
         }
         else if (dir_key == 's'){
-            step_x.setSpeed(-1000);
+            step_x.setSpeed(-250);
             step_x.runSpeed(); 
         }
 
         else if (dir_key == 'a'){
-            step_y.setSpeed(1000);
+            step_y.setSpeed(250);
             step_y.runSpeed(); 
         }
         else if (dir_key == 'd'){
-            step_y.setSpeed(-1000);
+            step_y.setSpeed(-250);
             step_y.runSpeed(); 
         }
         else if (dir_key == 't'){
-            step_z1.setSpeed(1000);
+            step_z1.setSpeed(8000);
             step_z1.runSpeed();
-            step_z2.setSpeed(1000);
+            step_z2.setSpeed(8000);
             step_z2.runSpeed(); 
         }
         else if (dir_key == 'g'){
-            step_z1.setSpeed(-1000);
+            step_z1.setSpeed(-8000);
             step_z1.runSpeed();
-            step_z2.setSpeed(-1000);
+            step_z2.setSpeed(-8000);
             step_z2.runSpeed();  
         }
 
-        // Test positions
-        else if(dir_key == 'z'){
-            positions[0] = 200;
-            positions[1] = 200;
-            positions[2] = 200;
-            positions[3] = 200;
-        }
+        // test positions for plants
+        else if (dir_key == '2'){
+            step_x.setSpeed(250);
+            step_x.moveTo(p2_x);
+            step_x.runSpeedToPosition();
 
-        else if(dir_key == 'x'){
-            positions[0] = 500;
-            positions[1] = 500;
-            positions[2] = 500;
-            positions[3] = 500;
-        }
+            step_z1.setSpeed(8000);
+            step_z1.moveTo(p2_z1);
+            step_z1.runSpeedToPosition();
 
-        else if(dir_key == 'c'){
-            positions[0] = 150;
-            positions[1] = 150;
-            positions[2] = 150;
-            positions[3] = 150;
+            step_z2.setSpeed(8000);
+            step_z2.moveTo(p2_z2);
+            step_z2.runSpeedToPosition();
+
+            step_y.setSpeed(250);
+            step_y.moveTo(p2_y);
+            step_y.runSpeedToPosition();
         }
     }
 }
