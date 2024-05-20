@@ -83,7 +83,12 @@ void StepMotor::debug_mode(){
             step_z2.setSpeed(-8000);
             step_z2.runSpeed();  
         }
-
+        else if (dir_key == 'p'){
+            step_x.enableOutputs();
+        }
+        else if (dir_key == 'l'){
+            step_x.disableOutputs();
+        }
         // test positions for plants
         else if (dir_key == '2'){
             step_x.setSpeed(250);

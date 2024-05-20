@@ -20,7 +20,10 @@ void setup() {
   UnregParam.set_pins();
 
   pinMode(13, OUTPUT);
+
+  // Stepper motor part
   all_motors.gantry_debug_state = true;
+  all_motors.set_enable_pins();
 }
 
 void loop() {
