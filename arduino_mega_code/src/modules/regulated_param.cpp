@@ -86,6 +86,13 @@ void RegulatedParam::control_EC(){
 }
 
 void RegulatedParam::control_water_temp(){
+    // peltier pin is 28
+    if (comm1.regulated_param.peltier_state==0){
+        digitalWrite(peltier_DPDT_1, HIGH);
+    }
+    if (comm1.regulated_param.peltier_state==1){
+        digitalWrite(peltier_DPDT_1, LOW);
+    }
 }
 
 void RegulatedParam::control_water_level(){

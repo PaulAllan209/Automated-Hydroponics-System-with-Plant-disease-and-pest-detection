@@ -1,5 +1,15 @@
 #include <WiFi.h>
 #include <PubSubClient.h>
+#include <OneWire.h>
+#include <DallasTemperature.h>
+
+const int oneWireBus = 4;
+
+// Setup a oneWire instance to communicate with any OneWire devices
+OneWire oneWire(oneWireBus);
+
+// Pass our oneWire reference to Dallas Temperature sensor 
+DallasTemperature sensors(&oneWire);
 
 // WiFi
 const char *ssid = "Tatay Jhoe"; // Enter your Wi-Fi name
@@ -8,6 +18,8 @@ const char *password = "24build13";  // Enter Wi-Fi password
 // MQTT Broker
 const char *mqtt_broker = "192.168.1.10";
 const char *topic = "emqx/esp32/pH";
+const char *topic_temp = "emqx/esp32/temp";
+
 const char *mqtt_username = "user";
 const char *mqtt_password = "public";
 const int mqtt_port = 1883;
@@ -56,9 +68,12 @@ void setup() {
     client.subscribe(topic);
 
     pinMode(39, INPUT);
+
+    // Start the DS18B20 sensor
+    sensors.begin();
 }
 
-float calibration_value = 27.54;
+float calibration_value = 18.84;
 int phval = 0;
 unsigned long int avgval; 
 int buffer_arr[10],temp;
@@ -66,13 +81,16 @@ int buffer_arr[10],temp;
 void loop() {
     client.loop();
     int ph_reading = analogRead(39);
-    // float voltage_reading = ph_reading*(5.0/4095.0);
+    
+    sensors.requestTemperatures(); 
+    float temperatureC = sensors.getTempCByIndex(0);
+    char tempString[8];
+    dtostrf(temperatureC, 1, 2, tempString);
+    client.publish(topic_temp, tempString);
+    
+    
 
-    // // Convert voltage to string
-    // char voltageString[8];
-    // dtostrf(voltage_reading, 1, 2, voltageString);
-    // client.publish(topic, voltageString);
-    // delay(1000);
+   
 
 
     // pH Measurement

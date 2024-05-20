@@ -1,80 +1,36 @@
-#include <Arduino.h>
+#include <OneWire.h>
+#include <DallasTemperature.h>
 
-<<<<<<< Updated upstream
-// Communication communication;
-// String received_dat;
-// int CTS_pin{13};
+// Data wire is plugged into digital pin 2 on the Arduino
+#define ONE_WIRE_BUS 2
 
-// Millis variables for delaying
+// Setup a oneWire instance to communicate with any OneWire device
+OneWire oneWire(ONE_WIRE_BUS);	
 
-AccelStepper zaxis1(1, 2, 3);
-AccelStepper zaxis2(1, 4, 5);
+// Pass oneWire reference to DallasTemperature library
+DallasTemperature sensors(&oneWire);
 
-
-// Button Pins
-int button1{8};
-int button2{9};
-
-
-void setup() {
-  // communication.def_CTS_pin(CTS_pin);
-  // communication.serial_begin();
- zaxis1.setMaxSpeed(1000);
- zaxis1.setSpeed(1000);
-
- zaxis2.setMaxSpeed(1000);
- zaxis2.setSpeed(1000);
-
-  pinMode(button1, INPUT);
-  pinMode(button2, INPUT);
+void setup(void)
+{
+  sensors.begin();	// Start up the library
+  Serial.begin(9600);
 }
 
-void loop() {
-  // while (Serial.available() > 0){
-  //   communication.read_data();
-  //   communication.parse_data();
-  //   if (communication.is_recv){
-  //     communication.print_data();
-  //   }
-  // }
+void loop(void)
+{ 
+  // Send the command to get temperatures
+  sensors.requestTemperatures(); 
 
-
-  if (digitalRead(button1)==HIGH){
-   zaxis1.setSpeed(1000);
-   zaxis1.runSpeed();
-
-   zaxis2.setSpeed(1000);
-   zaxis2.runSpeed();
-  }
-
-  if (digitalRead(button2)==HIGH){
-   zaxis1.setSpeed(-1000);
-   zaxis1.runSpeed();
-
-   zaxis2.setSpeed(-1000);
-   zaxis2.runSpeed();
-  }
-=======
-int p_num{80};
->>>>>>> Stashed changes
-
-void setup(){
-    Serial.begin(9600);
-    pinMode(LED_BUILTIN, OUTPUT);
-    pinMode(8, INPUT);
-    digitalWrite(LED_BUILTIN, HIGH);
-
-}
-
-void loop(){
-    while (Serial.available() > 0){
-        if (Serial.read() == 's'){
-            digitalWrite(2, LOW);
-        }
-    }
-    if (digitalRead(8) == HIGH){
-        Serial.write(p_num);
-        
-        p_num+=1;
-    }
+  //print the temperature in Celsius
+  Serial.print("Temperature: ");
+  Serial.print(sensors.getTempCByIndex(0));
+  Serial.print((char)176);//shows degrees character
+  Serial.print("C  |  ");
+  
+  //print the temperature in Fahrenheit
+  Serial.print((sensors.getTempCByIndex(0) * 9.0) / 5.0 + 32.0);
+  Serial.print((char)176);//shows degrees character
+  Serial.println("F");
+  
+  delay(500);
 }
