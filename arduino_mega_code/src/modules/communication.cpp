@@ -76,19 +76,19 @@ void Communication::parse_data(){
         regulated_param.solenoid= atoi(data_contained);
         break;
       case 114:
-        step_motors.step_x= atoi(data_contained);
+        step_motors.capture_plants = atoi(data_contained);
         break;
       case 115:
-        step_motors.step_y= atoi(data_contained);
+        step_motors.next_plant_state = atoi(data_contained);
         break;
       case 116:
-        step_motors.step_z1= atoi(data_contained);
+        step_motors.return_home_position= atoi(data_contained);
         break;
-      case 117:
-        step_motors.step_z2= atoi(data_contained);
-        break;
-      case 118:
-        step_motors.debug_state = atoi(data_contained);
+      // case 117:
+      //   step_motors.step_z2= atoi(data_contained);
+      //   break;
+      // case 118:
+      //   step_motors.debug_state = atoi(data_contained);
       default:
         break;
     }
@@ -127,19 +127,6 @@ void Communication::print_data(){
   Serial.println(unregulated_param.exhaust_fan_1);
   Serial.print("Exhaust fan 2: ");
   Serial.println(unregulated_param.exhaust_fan_2);
-
-  // Stepper motors
-  Serial.print("Step motor x: ");
-  Serial.println(step_motors.step_x);
-
-  Serial.print("Step motor y: ");
-  Serial.println(step_motors.step_y);
-
-  Serial.print("Step motor z1: ");
-  Serial.println(step_motors.step_z1);
-
-  Serial.print("Step motor z2: ");
-  Serial.println(step_motors.step_z2);
 
   is_recv = false;
 }

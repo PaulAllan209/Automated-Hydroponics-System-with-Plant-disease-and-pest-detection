@@ -1,13 +1,21 @@
 #include "./modules/step_motor.h"
 
-// StepMotor::StepMotor(Communication& comm1_input) : comm1(comm1_input){
-// }
+StepMotor::StepMotor(Communication& comm1_input) : comm1(comm1_input){
+}
 
 void StepMotor::set_enable_pins(){
     step_x.setEnablePin(enable_pin);
     step_z1.setEnablePin(enable_pin);
     step_z2.setEnablePin(enable_pin);
     step_y.setEnablePin(enable_pin);
+}
+
+void StepMotor::capture_all_plants(){
+    if (comm1.step_motors.capture_plants == 1){
+        // Move to plant 1
+        Serial.println("capture all plants was called");
+        comm1.step_motors.capture_plants = 0;
+    }
 }
 
 void StepMotor::add_stepper_motors(){
@@ -21,15 +29,6 @@ void StepMotor::add_stepper_motors(){
     stepper_motors.addStepper(step_z2);
     stepper_motors.addStepper(step_y);
 
-}
-
-
-
-void StepMotor::receive_coords(int step_x, int step_y, int step_z1, int step_z2){
-    recv_step_x = step_x;
-    recv_step_y = step_y;
-    recv_step_z1 = step_z1;
-    recv_step_z2 = step_z2;
 }
 
 
@@ -105,3 +104,6 @@ void StepMotor::debug_mode(){
         }
     }
 }
+
+// StepMotor::StepMotor(Communication& comm1_input) : comm1(comm1_input){
+// }

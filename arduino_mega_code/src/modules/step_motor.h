@@ -1,11 +1,18 @@
 #pragma once
 #include <MultiStepper.h>
 #include <AccelStepper.h>
+#include <./modules/communication.h>
+#include <Arduino.h>
 
 class StepMotor{
     public:
-    // Communication& comm1;
-    // RegulatedParam(Communication& comm1_input);
+    Communication& comm1;
+    StepMotor(Communication& comm1_input);
+
+    // States of step motors
+    int capture_plants{0}; // if it is 1 gantry will start moving and capturing the plants
+    int next_plant_state{0}; // will be true if the gantry will move to next plant
+    int return_home_position{0}; // if true it will return to home position
 
     // Pins
     uint8_t x_axis_pulse{33};
@@ -17,18 +24,6 @@ class StepMotor{
     uint8_t y_axis_pulse{39};
     uint8_t y_axis_dir{40};
     uint8_t enable_pin{41};
-
-    // Curr coords
-    int curr_step_x;
-    int curr_step_y;
-    int curr_step_z1;
-    int curr_step_z2;
-
-    // Target coords
-    int recv_step_x;
-    int recv_step_y;
-    int recv_step_z1;
-    int recv_step_z2;
 
     // coords each plants
     // Plant 1
