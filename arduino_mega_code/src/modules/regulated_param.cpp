@@ -89,9 +89,11 @@ void RegulatedParam::control_water_temp(){
     // peltier pin is 28
     if (comm1.regulated_param.peltier_state==0){
         digitalWrite(peltier_DPDT_1, HIGH);
+        analogWrite(AOwater_pump_peltier, 120);
     }
     if (comm1.regulated_param.peltier_state==1){
         digitalWrite(peltier_DPDT_1, LOW);
+        analogWrite(AOwater_pump_peltier, 0);
     }
 }
 
