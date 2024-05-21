@@ -59,9 +59,9 @@ void StepMotor::debug_mode(){
             Serial.print("Step y pos: ");
             Serial.println(step_y.currentPosition());
         }
-
+        }
         if (dir_key == 'w'){
-            if (digitalRead(x_limit == HIGH)){
+            if (digitalRead(x_limit)==HIGH){
                 step_x.setSpeed(5000);
                 step_x.runSpeed();
             }
@@ -77,7 +77,7 @@ void StepMotor::debug_mode(){
             step_y.runSpeed(); 
         }
         else if (dir_key == 'd'){
-            if (digitalRead(y_limit == HIGH)){
+            if (digitalRead(y_limit) == HIGH){
                 step_y.setSpeed(-5000);
                 step_y.runSpeed(); 
             }
@@ -90,7 +90,7 @@ void StepMotor::debug_mode(){
             step_z2.runSpeed(); 
         }
         else if (dir_key == 'g'){
-            if (digitalRead(z_limit == HIGH)){
+            if (digitalRead(z_limit) == HIGH){
                 step_z1.setSpeed(-8000);
                 step_z1.runSpeed();
                 step_z2.setSpeed(-8000);
@@ -122,8 +122,8 @@ void StepMotor::debug_mode(){
             step_y.moveTo(p2_y);
             step_y.runSpeedToPosition();
         }
-    }
 }
+
 
 // StepMotor::StepMotor(Communication& comm1_input) : comm1(comm1_input){
 // }
