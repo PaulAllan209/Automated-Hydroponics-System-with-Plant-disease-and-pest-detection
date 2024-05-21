@@ -40,10 +40,10 @@ void StepMotor::add_stepper_motors(){
 
 void StepMotor::debug_mode(){
     // gantry_debug_state = comm1_input.step_motors.debug_state;
-    step_x.setMaxSpeed(250);
+    step_x.setMaxSpeed(5000);
     step_z1.setMaxSpeed(8000);
     step_z2.setMaxSpeed(8000);
-    step_y.setMaxSpeed(250);
+    step_y.setMaxSpeed(5000);
 
     if (gantry_debug_state==true){
         if (Serial.available() > 0){
@@ -62,23 +62,23 @@ void StepMotor::debug_mode(){
 
         if (dir_key == 'w'){
             if (digitalRead(x_limit == HIGH)){
-                step_x.setSpeed(250);
+                step_x.setSpeed(5000);
                 step_x.runSpeed();
             }
         }
                 
         else if (dir_key == 's'){
-            step_x.setSpeed(-250);
+            step_x.setSpeed(-5000);
             step_x.runSpeed(); 
         }
 
         else if (dir_key == 'a'){
-            step_y.setSpeed(250);
+            step_y.setSpeed(5000);
             step_y.runSpeed(); 
         }
         else if (dir_key == 'd'){
             if (digitalRead(y_limit == HIGH)){
-                step_y.setSpeed(-250);
+                step_y.setSpeed(-5000);
                 step_y.runSpeed(); 
             }
         }
@@ -106,7 +106,7 @@ void StepMotor::debug_mode(){
         }
         // test positions for plants
         else if (dir_key == '2'){
-            step_x.setSpeed(250);
+            step_x.setSpeed(5000);
             step_x.moveTo(p2_x);
             step_x.runSpeedToPosition();
 
@@ -118,7 +118,7 @@ void StepMotor::debug_mode(){
             step_z2.moveTo(p2_z2);
             step_z2.runSpeedToPosition();
 
-            step_y.setSpeed(250);
+            step_y.setSpeed(5000);
             step_y.moveTo(p2_y);
             step_y.runSpeedToPosition();
         }
