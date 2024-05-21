@@ -10,6 +10,12 @@ void StepMotor::set_enable_pins(){
     step_y.setEnablePin(enable_pin);
 }
 
+void StepMotor::set_limit_switches_pins(){
+    pinMode(x_limit, INPUT_PULLUP);
+    pinMode(z_limit, INPUT_PULLUP);
+    pinMode(y_limit, INPUT_PULLUP);
+}
+
 void StepMotor::capture_all_plants(){
     if (comm1.step_motors.capture_plants == 1){
         // Move to plant 1
@@ -55,9 +61,12 @@ void StepMotor::debug_mode(){
         }
 
         if (dir_key == 'w'){
+            if (digitalRead(x_limit == HIGH)){
                 step_x.setSpeed(250);
                 step_x.runSpeed();
+            }
         }
+                
         else if (dir_key == 's'){
             step_x.setSpeed(-250);
             step_x.runSpeed(); 
@@ -68,9 +77,12 @@ void StepMotor::debug_mode(){
             step_y.runSpeed(); 
         }
         else if (dir_key == 'd'){
-            step_y.setSpeed(-250);
-            step_y.runSpeed(); 
+            if (digitalRead(y_limit == HIGH)){
+                step_y.setSpeed(-250);
+                step_y.runSpeed(); 
+            }
         }
+
         else if (dir_key == 't'){
             step_z1.setSpeed(8000);
             step_z1.runSpeed();
@@ -78,10 +90,13 @@ void StepMotor::debug_mode(){
             step_z2.runSpeed(); 
         }
         else if (dir_key == 'g'){
-            step_z1.setSpeed(-8000);
-            step_z1.runSpeed();
-            step_z2.setSpeed(-8000);
-            step_z2.runSpeed();  
+            if (digitalRead(z_limit == HIGH)){
+                step_z1.setSpeed(-8000);
+                step_z1.runSpeed();
+                step_z2.setSpeed(-8000);
+                step_z2.runSpeed(); 
+            }
+             
         }
         else if (dir_key == 'p'){
             step_x.enableOutputs();

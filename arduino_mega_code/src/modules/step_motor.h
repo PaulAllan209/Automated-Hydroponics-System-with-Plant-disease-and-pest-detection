@@ -110,7 +110,13 @@ class StepMotor{
 
     MultiStepper stepper_motors;
 
+    // Limit switches pins
+    int x_limit{42};
+    int z_limit{43};
+    int y_limit{44};
+
     void set_enable_pins();
+    void set_limit_switches_pins();
     void add_stepper_motors();
     void receive_coords(int step_x, int step_y, int step_z1, int step_z2);
     void capture_all_plants();

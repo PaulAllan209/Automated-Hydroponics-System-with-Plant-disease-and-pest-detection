@@ -24,6 +24,7 @@ void setup() {
   // Stepper motor part
   all_motors.gantry_debug_state = true;
   all_motors.set_enable_pins();
+  all_motors.set_limit_switches_pins();
 }
 
 void loop() {
