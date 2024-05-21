@@ -16,6 +16,13 @@ void StepMotor::set_limit_switches_pins(){
     pinMode(y_limit, INPUT_PULLUP);
 }
 
+void StepMotor::set_max_speed(){
+    step_x.setMaxSpeed(5000);
+    step_z1.setMaxSpeed(8000);
+    step_z2.setMaxSpeed(8000);
+    step_y.setMaxSpeed(5000);
+}
+
 void StepMotor::capture_all_plants(){
     if (comm1.step_motors.capture_plants == 1){
         // Move to plant 1
@@ -35,6 +42,32 @@ void StepMotor::add_stepper_motors(){
     stepper_motors.addStepper(step_z2);
     stepper_motors.addStepper(step_y);
 
+}
+
+void StepMotor::go_home_pos(){
+    while(digitalRead(x_limit) == HIGH){
+        step_x.setSpeed(5000);
+        step_x.runSpeed();
+    }
+
+    while(digitalRead(y_limit) == HIGH){
+        step_y.setSpeed(-5000);
+        step_y.runSpeed();
+    }
+
+    while(digitalRead(z_limit) == HIGH){
+        step_z1.setSpeed(-8000);
+        step_z2.setSpeed(-8000);
+        step_z1.runSpeed();
+        step_z2.runSpeed();
+    }
+
+    if (x_limit && y_limit && z_limit == LOW){
+        step_x.setCurrentPosition(0);
+        step_y.setCurrentPosition(0);
+        step_z1.setCurrentPosition(0);
+        step_z2.setCurrentPosition(0);
+    }
 }
 
 
@@ -104,23 +137,11 @@ void StepMotor::debug_mode(){
         else if (dir_key == 'l'){
             step_x.disableOutputs();
         }
-        // test positions for plants
-        else if (dir_key == '2'){
-            step_x.setSpeed(5000);
-            step_x.moveTo(p2_x);
-            step_x.runSpeedToPosition();
 
-            step_z1.setSpeed(8000);
-            step_z1.moveTo(p2_z1);
-            step_z1.runSpeedToPosition();
-
-            step_z2.setSpeed(8000);
-            step_z2.moveTo(p2_z2);
-            step_z2.runSpeedToPosition();
-
-            step_y.setSpeed(5000);
-            step_y.moveTo(p2_y);
-            step_y.runSpeedToPosition();
+        // test go to home pos
+        else if (dir_key == 'o'){
+            go_home_pos();
+            dir_key = 'k';
         }
 }
 
