@@ -117,9 +117,12 @@ class StepMotor{
 
     void set_enable_pins();
     void set_limit_switches_pins();
+    void set_max_speed();
     void add_stepper_motors();
     void receive_coords(int step_x, int step_y, int step_z1, int step_z2);
     void capture_all_plants();
     bool check_coords(); // returns true and sends message to serial if the coords matches with the received coords
     void debug_mode();
+
+    void go_home_pos();
 };
