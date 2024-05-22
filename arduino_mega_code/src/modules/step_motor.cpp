@@ -18,8 +18,8 @@ void StepMotor::set_limit_switches_pins(){
 
 void StepMotor::set_max_speed(){
     step_x.setMaxSpeed(5000);
-    step_z1.setMaxSpeed(8000);
-    step_z2.setMaxSpeed(8000);
+    step_z1.setMaxSpeed(12000);
+    step_z2.setMaxSpeed(12000);
     step_y.setMaxSpeed(5000);
 }
 
