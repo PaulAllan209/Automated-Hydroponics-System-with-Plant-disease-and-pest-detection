@@ -26,6 +26,10 @@ void setup() {
   all_motors.set_enable_pins();
   all_motors.set_limit_switches_pins();
   all_motors.set_max_speed();
+
+  all_motors.return_home_position = false;
+  all_motors.capture_plants_ready = false;
+
 }
 
 void loop() {
@@ -42,11 +46,10 @@ void loop() {
   // Motor part
   all_motors.debug_mode();
 
-  if (communication.step_motors.capture_plants==1){
-    all_motors.return_home_position = false;
-    all_motors.capture_plants_ready = false;
-    all_motors.capture_all_plants();
-  }
+  // if (communication.step_motors.capture_plants==1){
+  //   // all_motors.capture_plant_debug();
+  //   all_motors.capture_all_plants();
+  // }
 
   RegParam.control_pH();
   RegParam.control_EC();

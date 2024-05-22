@@ -125,6 +125,7 @@ class StepMotor{
     void add_stepper_motors();
     void receive_coords(int step_x, int step_y, int step_z1, int step_z2);
     void capture_all_plants();
+    void capture_plant_debug();
     bool check_coords(); // returns true and sends message to serial if the coords matches with the received coords
     void debug_mode();
 
