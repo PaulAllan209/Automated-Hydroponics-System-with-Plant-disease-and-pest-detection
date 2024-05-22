@@ -1,7 +1,27 @@
+#if defined(ESP8266)
+#include <ESP8266WiFi.h>
+#else
 #include <WiFi.h>
+#endif
+#if defined(ESP8266)
+#include <ESP8266WebServer.h>
+#else
+#include <WebServer.h>
+#endif
 #include <PubSubClient.h>
+
 #include <OneWire.h>
 #include <DallasTemperature.h>
+
+const char* mqtt_server = "192.168.1.10"; //mqtt server
+const char* ssid = "Tatay Jhoe";
+const char* password = "24build13";
+
+const char *topic = "emqx/esp32/pH";
+const char *topic_temp = "emqx/esp32/temp";
+
+WiFiClient espClient;
+PubSubClient client(espClient); //lib required for mqtt
 
 const int oneWireBus = 4;
 
@@ -11,87 +31,106 @@ OneWire oneWire(oneWireBus);
 // Pass our oneWire reference to Dallas Temperature sensor 
 DallasTemperature sensors(&oneWire);
 
-// WiFi
-const char *ssid = "Tatay Jhoe"; // Enter your Wi-Fi name
-const char *password = "24build13";  // Enter Wi-Fi password
-
-// MQTT Broker
-const char *mqtt_broker = "192.168.1.10";
-const char *topic = "emqx/esp32/pH";
-const char *topic_temp = "emqx/esp32/temp";
-
-const char *mqtt_username = "user";
-const char *mqtt_password = "public";
-const int mqtt_port = 1883;
-
-WiFiClient espClient;
-PubSubClient client(espClient);
-
-void callback(char *topic, byte *payload, unsigned int length) {
-    Serial.print("Message arrived in topic: ");
-    Serial.println(topic);
-    Serial.print("Message:");
-    for (int i = 0; i < length; i++) {
-        Serial.print((char) payload[i]);
-    }
-    Serial.println();
-    Serial.println("-----------------------");
-}
-
-void setup() {
-    // Set software serial baud to 115200;
-    Serial.begin(9600);
-    // Connecting to a WiFi network
-    WiFi.begin(ssid, password);
-    while (WiFi.status() != WL_CONNECTED) {
-        delay(500);
-        Serial.println("Connecting to WiFi..");
-    }
-    Serial.println("Connected to the Wi-Fi network");
-    //connecting to a mqtt broker
-    client.setServer(mqtt_broker, mqtt_port);
-    client.setCallback(callback);
-    while (!client.connected()) {
-        String client_id = "pH_esp32";
-        client_id += String(WiFi.macAddress());
-        Serial.printf("The client %s connects to the public MQTT broker\n", client_id.c_str());
-        if (client.connect(client_id.c_str(), mqtt_username, mqtt_password)) {
-            Serial.println("Public EMQX MQTT broker connected");
-        } else {
-            Serial.print("failed with state ");
-            Serial.print(client.state());
-            delay(2000);
-        }
-    }
-    // Publish and subscribe
-    client.publish(topic, "Hi, I'm ESP32 ^^");
-    client.subscribe(topic);
-
-    pinMode(39, INPUT);
-
-    // Start the DS18B20 sensor
-    sensors.begin();
-}
-
 float calibration_value = 18.84;
 int phval = 0;
 unsigned long int avgval; 
 int buffer_arr[10],temp;
 
-void loop() {
-    client.loop();
-    int ph_reading = analogRead(39);
-    
+int LED = 02;
+
+void callback(char* topic, byte* payload, unsigned int length) {   //callback includes topic and payload ( from which (topic) the payload is comming)
+  Serial.print("Message arrived [");
+  Serial.print(topic);
+  Serial.print("] ");
+  for (int i = 0; i < length; i++)
+  {
+    Serial.print((char)payload[i]);
+  }
+  if ((char)payload[0] == 'O' && (char)payload[1] == 'N') //on
+  {
+    digitalWrite(LED, HIGH);
+    Serial.println("on");
+    client.publish("outTopic", "LED turned ON");
+  }
+  else if ((char)payload[0] == 'O' && (char)payload[1] == 'F' && (char)payload[2] == 'F') //off
+  {
+    digitalWrite(LED, LOW);
+    Serial.println(" off");
+    client.publish("outTopic", "LED turned OFF");
+  }
+  Serial.println();
+}
+
+void reconnect() {
+  while (!client.connected()) {
+    Serial.println("Attempting MQTT connection...");
+    if (client.connect("ESP32_clientID")) {
+      Serial.println("connected");
+      // Once connected, publish an announcement...
+      client.publish("outTopic", "Nodemcu connected to MQTT");
+      // ... and resubscribe
+      client.subscribe("inTopic");
+
+    } else {
+      Serial.print("failed, rc=");
+      Serial.print(client.state());
+      Serial.println(" try again in 5 seconds");
+      // Wait 5 seconds before retrying
+      delay(5000);
+    }
+  }
+}
+
+void connectmqtt()
+{
+  client.connect("ESP32_clientID");  // ESP will connect to mqtt broker with clientID
+  {
+    Serial.println("connected to MQTT");
+    // Once connected, publish an announcement...
+
+    // ... and resubscribe
+    client.subscribe("inTopic"); //topic=Demo
+    client.publish("outTopic",  "connected to MQTT");
+
+    if (!client.connected())
+    {
+      reconnect();
+    }
+  }
+}
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(LED, OUTPUT);
+  digitalWrite(LED, LOW);
+  pinMode(39, INPUT);
+
+  // Start the DS18B20 sensor
+    sensors.begin();
+
+  WiFi.begin(ssid, password);
+  Serial.println("connected");
+  client.setServer(mqtt_server, 1883);//connecting to mqtt server
+  client.setCallback(callback);
+  //delay(5000);
+  connectmqtt();
+}
+
+void loop()
+{
+  // put your main code here, to run repeatedly:
+  if (!client.connected())
+  {
+    reconnect();
+  }
+
+  int ph_reading = analogRead(39);
     sensors.requestTemperatures(); 
     float temperatureC = sensors.getTempCByIndex(0);
     char tempString[8];
     dtostrf(temperatureC, 1, 2, tempString);
     client.publish(topic_temp, tempString);
-    
-    
-
-   
-
 
     // pH Measurement
 
@@ -117,4 +156,6 @@ void loop() {
       char voltageString[8];
       dtostrf(ph_act, 1, 2, voltageString);
       client.publish(topic, voltageString);
+
+  client.loop();
 }

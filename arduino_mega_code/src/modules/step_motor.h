@@ -11,7 +11,6 @@ class StepMotor{
 
     // States of step motors
     int capture_plants{0}; // if it is 1 gantry will start moving and capturing the plants
-    int next_plant_state{0}; // will be true if the gantry will move to next plant
     int return_home_position{0}; // if true it will return to home position
 
     // Pins
@@ -27,64 +26,68 @@ class StepMotor{
 
     // coords each plants
     // Plant 1
-    int p1_x;
-    int p1_z1;
-    int p1_z2;
-    int p1_y;
+    long int p1_x{-4930};
+    long int p1_z1{57626};
+    long int p1_z2{57626};
+    long int p1_y{1152};
 
     // Plant 2
-    int p2_x{-30};
-    int p2_z1{200};
-    int p2_z2{200};
-    int p2_y{30};
+    long int p2_x{-9564};
+    long int p2_z1{5726};
+    long int p2_z2{5726};
+    long int p2_y{1123};
 
     // Plant 3
-    int p3_x;
-    int p3_z1;
-    int p3_z2;
-    int p3_y;
+    long  int p3_x{-14990};
+    long int p3_z1{57626};
+    long int p3_z2{57626};
+    long int p3_y{1188};
 
     // Plant 4
-    int p4_x;
-    int p4_z1;
-    int p4_z2;
-    int p4_y;
+    long int p4_x{-17538};
+    long int p4_z1{57626};
+    long int p4_z2{57626};
+    long int p4_y{4764};
 
     // Plant 5
-    int p5_x;
-    int p5_z1;
-    int p5_z2;
-    int p5_y;
+    long int p5_x{-12533};
+    long int p5_z1{57626};
+    long int p5_z2{57626};
+    long int p5_y{4177};
 
     // Plant 6
-    int p6_x;
-    int p6_z1;
-    int p6_z2;
-    int p6_y;
+    long int p6_x{-7227};
+    long int p6_z1{57626};
+    long int p6_z2{57626};
+    long int p6_y{4138};
 
     // Plant 7
-    int p7_x;
-    int p7_z1;
-    int p7_z2;
-    int p7_y;
+    long int p7_x{-2328};
+    long int p7_z1{57626};
+    long int p7_z2{57626};
+    long int p7_y{4040};
 
     // Plant 8
-    int p8_x;
-    int p8_z1;
-    int p8_z2;
-    int p8_y;
+    long int p8_x{-5027};
+    long int p8_z1{57626};
+    long int p8_z2{57626};
+    long int p8_y{6850};
 
     // Plant 9
-    int p9_x;
-    int p9_z1;
-    int p9_z2;
-    int p9_y;
+    long int p9_x{-9717};
+    long int p9_z1{57626};
+    long int p9_z2{57626};
+    long int p9_y{6991};
 
     // Plant 10
-    int p10_x;
-    int p10_z1;
-    int p10_z2;
-    int p10_y;
+    long int p10_x{-14897};
+    long int p10_z1{57626};
+    long int p10_z2{57626};
+    long int p10_y{7200};
+
+    // for capture plants method
+    bool home_pos_state{false};
+    int plant_pos_debug;
 
     // debug mode
     char dir_key;

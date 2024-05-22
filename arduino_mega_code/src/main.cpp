@@ -42,6 +42,7 @@ void loop() {
   // Motor part
   all_motors.debug_mode();
   all_motors.capture_all_plants();
+  
   RegParam.control_pH();
   RegParam.control_EC();
   RegParam.control_water_flow_rate();

@@ -23,14 +23,6 @@ void StepMotor::set_max_speed(){
     step_y.setMaxSpeed(5000);
 }
 
-void StepMotor::capture_all_plants(){
-    if (comm1.step_motors.capture_plants == 1){
-        // Move to plant 1
-        Serial.println("capture all plants was called");
-        comm1.step_motors.capture_plants = 0;
-    }
-}
-
 void StepMotor::add_stepper_motors(){
     // Order of adding stepper motor
     // x
@@ -67,6 +59,133 @@ void StepMotor::go_home_pos(){
         step_y.setCurrentPosition(0);
         step_z1.setCurrentPosition(0);
         step_z2.setCurrentPosition(0);
+    }
+}
+
+void StepMotor::capture_all_plants(){
+    go_home_pos();
+    if (comm1.step_motors.capture_plants == 1){
+        // Plant 1
+        if (comm1.step_motors.next_plant_state == 1){
+            step_x.moveTo(p1_x);
+            step_z1.moveTo(p1_z1);
+            step_z2.moveTo(p1_z1);
+            step_y.moveTo(p1_y);
+
+            step_x.run();
+            step_z1.run();
+            step_z2.run();
+            step_y.run();
+        }
+
+        if (comm1.step_motors.next_plant_state == 2){
+            step_x.moveTo(p2_x);
+            step_z1.moveTo(p2_z1);
+            step_z2.moveTo(p2_z1);
+            step_y.moveTo(p2_y);
+
+            step_x.run();
+            step_z1.run();
+            step_z2.run();
+            step_y.run();
+        }
+
+        if (comm1.step_motors.next_plant_state == 3){
+            step_x.moveTo(p3_x);
+            step_z1.moveTo(p3_z1);
+            step_z2.moveTo(p3_z1);
+            step_y.moveTo(p3_y);
+
+            step_x.run();
+            step_z1.run();
+            step_z2.run();
+            step_y.run();
+        }
+
+        if (comm1.step_motors.next_plant_state == 4){
+            step_x.moveTo(p4_x);
+            step_z1.moveTo(p4_z1);
+            step_z2.moveTo(p4_z1);
+            step_y.moveTo(p4_y);
+
+            step_x.run();
+            step_z1.run();
+            step_z2.run();
+            step_y.run();
+        }
+
+        if (comm1.step_motors.next_plant_state == 5){
+            step_x.moveTo(p5_x);
+            step_z1.moveTo(p5_z1);
+            step_z2.moveTo(p5_z1);
+            step_y.moveTo(p5_y);
+
+            step_x.run();
+            step_z1.run();
+            step_z2.run();
+            step_y.run();
+        }
+
+        if (comm1.step_motors.next_plant_state == 6){
+            step_x.moveTo(p6_x);
+            step_z1.moveTo(p6_z1);
+            step_z2.moveTo(p6_z1);
+            step_y.moveTo(p6_y);
+
+            step_x.run();
+            step_z1.run();
+            step_z2.run();
+            step_y.run();
+        }
+
+        if (comm1.step_motors.next_plant_state == 7){
+            step_x.moveTo(p7_x);
+            step_z1.moveTo(p7_z1);
+            step_z2.moveTo(p7_z1);
+            step_y.moveTo(p7_y);
+
+            step_x.run();
+            step_z1.run();
+            step_z2.run();
+            step_y.run();
+        }
+
+        if (comm1.step_motors.next_plant_state == 8){
+            step_x.moveTo(p8_x);
+            step_z1.moveTo(p8_z1);
+            step_z2.moveTo(p8_z1);
+            step_y.moveTo(p8_y);
+
+            step_x.run();
+            step_z1.run();
+            step_z2.run();
+            step_y.run();
+        }
+
+        if (comm1.step_motors.next_plant_state == 9){
+            step_x.moveTo(p9_x);
+            step_z1.moveTo(p9_z1);
+            step_z2.moveTo(p9_z1);
+            step_y.moveTo(p9_y);
+
+            step_x.run();
+            step_z1.run();
+            step_z2.run();
+            step_y.run();
+        }
+
+        if (comm1.step_motors.next_plant_state == 10){
+            step_x.moveTo(p10_x);
+            step_z1.moveTo(p10_z1);
+            step_z2.moveTo(p10_z1);
+            step_y.moveTo(p10_y);
+
+            step_x.run();
+            step_z1.run();
+            step_z2.run();
+            step_y.run();
+        }
+
     }
 }
 
