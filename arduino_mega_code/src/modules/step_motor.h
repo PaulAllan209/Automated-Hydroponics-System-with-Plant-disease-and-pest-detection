@@ -11,7 +11,7 @@ class StepMotor{
 
     // States of step motors
     int capture_plants{0}; // if it is 1 gantry will start moving and capturing the plants
-    int return_home_position{0}; // if true it will return to home position
+    bool return_home_position{false}; // if true it will return to home position
 
     // Pins
     uint8_t x_axis_pulse{33};
@@ -88,6 +88,7 @@ class StepMotor{
     // for capture plants method
     bool home_pos_state{false};
     int plant_pos_debug;
+    bool capture_plants_ready{false};
 
     // debug mode
     char dir_key;
