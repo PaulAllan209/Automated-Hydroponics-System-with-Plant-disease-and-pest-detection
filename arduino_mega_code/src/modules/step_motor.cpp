@@ -59,14 +59,18 @@ void StepMotor::go_home_pos(){
         step_z2.runSpeed();
     }
 
-    if ((digitalRead(x_limit) && digitalRead(y_limit) && digitalRead(z_limit)) == LOW){
-        step_x.setCurrentPosition(0);
-        step_y.setCurrentPosition(0);
-        step_z1.setCurrentPosition(0);
-        step_z2.setCurrentPosition(0);
-
-        return_home_position = true;
-        capture_plants_ready = true;
+    if (digitalRead(x_limit) == LOW){
+        if(digitalRead(y_limit) == LOW){
+            if(digitalRead(z_limit) == LOW){
+                step_x.setCurrentPosition(0);
+                step_y.setCurrentPosition(0);
+                step_z1.setCurrentPosition(0);
+                step_z2.setCurrentPosition(0);
+                
+                return_home_position = true;
+                capture_plants_ready = true;
+            }
+        }
     }
 }
 
@@ -81,12 +85,12 @@ void StepMotor::capture_plant_debug(){
     step_z2.setSpeed(12000);
     step_y.setSpeed(5000);
 
-    // if ((return_home_position || capture_plants_ready) == false){
-    //     // Serial.println("Capture plants was called!");
-    //     go_home_pos();
-    // }
+    if (!(return_home_position || capture_plants_ready)){
+        // Serial.println("Capture plants was called!");
+        go_home_pos();
+    }
 
-    // if (capture_plants_ready == true){
+    if (capture_plants_ready == true){
         step_x.moveTo(p1_x);
         step_z1.moveTo(p1_z1);
         step_z2.moveTo(p1_z1);
@@ -96,145 +100,157 @@ void StepMotor::capture_plant_debug(){
         step_z1.runSpeedToPosition();
         step_z2.runSpeedToPosition();
         step_y.runSpeedToPosition();
-    // }
+    }
 }
 
 void StepMotor::capture_all_plants(){
-    // if ((return_home_position || capture_plants_ready) == false){
+    step_x.setMaxSpeed(5000);
+    step_z1.setMaxSpeed(12000);
+    step_z2.setMaxSpeed(12000);
+    step_y.setMaxSpeed(5000);
+
+    step_x.setSpeed(5000);
+    step_z1.setSpeed(12000);
+    step_z2.setSpeed(12000);
+    step_y.setSpeed(5000);
+
+    if (!(return_home_position || capture_plants_ready)){
         // Serial.println("Capture plants was called!");
         go_home_pos();
-    // }
+    }
 
-    // if (capture_plants_ready == true){
-    //     step_x.setSpeed(5000);
-    //     step_z1.setSpeed(12000);
-    //     step_z2.setSpeed(12000);
-    //     step_y.setSpeed(5000);
-    //     if (comm1.step_motors.capture_plants == 1){
-    //     // Plant 1
-    //         if (comm1.step_motors.next_plant_state == 1){
-    //             step_x.moveTo(p1_x);
-    //             step_z1.moveTo(p1_z1);
-    //             step_z2.moveTo(p1_z1);
-    //             step_y.moveTo(p1_y);
+    if (capture_plants_ready == true){
+        step_x.setSpeed(5000);
+        step_z1.setSpeed(12000);
+        step_z2.setSpeed(12000);
+        step_y.setSpeed(5000);
+        if (comm1.step_motors.capture_plants == 1){
+        // Plant 1
+            if (comm1.step_motors.next_plant_state == 1){
+                step_x.moveTo(p1_x);
+                step_z1.moveTo(p1_z1);
+                step_z2.moveTo(p1_z1);
+                step_y.moveTo(p1_y);
 
-    //             step_x.runSpeedToPosition();
-    //             step_z1.runSpeedToPosition();
-    //             step_z2.runSpeedToPosition();
-    //             step_y.runSpeedToPosition();
-    //         }
+                step_x.runSpeedToPosition();
+                step_z1.runSpeedToPosition();
+                step_z2.runSpeedToPosition();
+                step_y.runSpeedToPosition();
 
-    //         if (comm1.step_motors.next_plant_state == 2){
-    //             step_x.moveTo(p2_x);
-    //             step_z1.moveTo(p2_z1);
-    //             step_z2.moveTo(p2_z1);
-    //             step_y.moveTo(p2_y);
+                
+            }
 
-    //             step_x.runSpeedToPosition();
-    //             step_z1.runSpeedToPosition();
-    //             step_z2.runSpeedToPosition();
-    //             step_y.runSpeedToPosition();
-    //         }
+            if (comm1.step_motors.next_plant_state == 2){
+                step_x.moveTo(p2_x);
+                step_z1.moveTo(p2_z1);
+                step_z2.moveTo(p2_z1);
+                step_y.moveTo(p2_y);
 
-    //         if (comm1.step_motors.next_plant_state == 3){
-    //             step_x.moveTo(p3_x);
-    //             step_z1.moveTo(p3_z1);
-    //             step_z2.moveTo(p3_z1);
-    //             step_y.moveTo(p3_y);
+                step_x.runSpeedToPosition();
+                step_z1.runSpeedToPosition();
+                step_z2.runSpeedToPosition();
+                step_y.runSpeedToPosition();
+            }
 
-    //             step_x.runSpeedToPosition();
-    //             step_z1.runSpeedToPosition();
-    //             step_z2.runSpeedToPosition();
-    //             step_y.runSpeedToPosition();
-    //         }
+            if (comm1.step_motors.next_plant_state == 3){
+                step_x.moveTo(p3_x);
+                step_z1.moveTo(p3_z1);
+                step_z2.moveTo(p3_z1);
+                step_y.moveTo(p3_y);
 
-    //         if (comm1.step_motors.next_plant_state == 4){
-    //             step_x.moveTo(p4_x);
-    //             step_z1.moveTo(p4_z1);
-    //             step_z2.moveTo(p4_z1);
-    //             step_y.moveTo(p4_y);
+                step_x.runSpeedToPosition();
+                step_z1.runSpeedToPosition();
+                step_z2.runSpeedToPosition();
+                step_y.runSpeedToPosition();
+            }
 
-    //             step_x.runSpeedToPosition();
-    //             step_z1.runSpeedToPosition();
-    //             step_z2.runSpeedToPosition();
-    //             step_y.runSpeedToPosition();
-    //         }
+            if (comm1.step_motors.next_plant_state == 4){
+                step_x.moveTo(p4_x);
+                step_z1.moveTo(p4_z1);
+                step_z2.moveTo(p4_z1);
+                step_y.moveTo(p4_y);
 
-    //         if (comm1.step_motors.next_plant_state == 5){
-    //             step_x.moveTo(p5_x);
-    //             step_z1.moveTo(p5_z1);
-    //             step_z2.moveTo(p5_z1);
-    //             step_y.moveTo(p5_y);
+                step_x.runSpeedToPosition();
+                step_z1.runSpeedToPosition();
+                step_z2.runSpeedToPosition();
+                step_y.runSpeedToPosition();
+            }
 
-    //             step_x.runSpeedToPosition();
-    //             step_z1.runSpeedToPosition();
-    //             step_z2.runSpeedToPosition();
-    //             step_y.runSpeedToPosition();
-    //         }
+            if (comm1.step_motors.next_plant_state == 5){
+                step_x.moveTo(p5_x);
+                step_z1.moveTo(p5_z1);
+                step_z2.moveTo(p5_z1);
+                step_y.moveTo(p5_y);
 
-    //         if (comm1.step_motors.next_plant_state == 6){
-    //             step_x.moveTo(p6_x);
-    //             step_z1.moveTo(p6_z1);
-    //             step_z2.moveTo(p6_z1);
-    //             step_y.moveTo(p6_y);
+                step_x.runSpeedToPosition();
+                step_z1.runSpeedToPosition();
+                step_z2.runSpeedToPosition();
+                step_y.runSpeedToPosition();
+            }
 
-    //             step_x.runSpeedToPosition();
-    //             step_z1.runSpeedToPosition();
-    //             step_z2.runSpeedToPosition();
-    //             step_y.runSpeedToPosition();
-    //         }
+            if (comm1.step_motors.next_plant_state == 6){
+                step_x.moveTo(p6_x);
+                step_z1.moveTo(p6_z1);
+                step_z2.moveTo(p6_z1);
+                step_y.moveTo(p6_y);
 
-    //         if (comm1.step_motors.next_plant_state == 7){
-    //             step_x.moveTo(p7_x);
-    //             step_z1.moveTo(p7_z1);
-    //             step_z2.moveTo(p7_z1);
-    //             step_y.moveTo(p7_y);
+                step_x.runSpeedToPosition();
+                step_z1.runSpeedToPosition();
+                step_z2.runSpeedToPosition();
+                step_y.runSpeedToPosition();
+            }
 
-    //             step_x.runSpeedToPosition();
-    //             step_z1.runSpeedToPosition();
-    //             step_z2.runSpeedToPosition();
-    //             step_y.runSpeedToPosition();
-    //         }
+            if (comm1.step_motors.next_plant_state == 7){
+                step_x.moveTo(p7_x);
+                step_z1.moveTo(p7_z1);
+                step_z2.moveTo(p7_z1);
+                step_y.moveTo(p7_y);
 
-    //         if (comm1.step_motors.next_plant_state == 8){
-    //             step_x.moveTo(p8_x);
-    //             step_z1.moveTo(p8_z1);
-    //             step_z2.moveTo(p8_z1);
-    //             step_y.moveTo(p8_y);
+                step_x.runSpeedToPosition();
+                step_z1.runSpeedToPosition();
+                step_z2.runSpeedToPosition();
+                step_y.runSpeedToPosition();
+            }
 
-    //             step_x.runSpeedToPosition();
-    //             step_z1.runSpeedToPosition();
-    //             step_z2.runSpeedToPosition();
-    //             step_y.runSpeedToPosition();
-    //         }
+            if (comm1.step_motors.next_plant_state == 8){
+                step_x.moveTo(p8_x);
+                step_z1.moveTo(p8_z1);
+                step_z2.moveTo(p8_z1);
+                step_y.moveTo(p8_y);
 
-    //         if (comm1.step_motors.next_plant_state == 9){
-    //             step_x.moveTo(p9_x);
-    //             step_z1.moveTo(p9_z1);
-    //             step_z2.moveTo(p9_z1);
-    //             step_y.moveTo(p9_y);
+                step_x.runSpeedToPosition();
+                step_z1.runSpeedToPosition();
+                step_z2.runSpeedToPosition();
+                step_y.runSpeedToPosition();
+            }
 
-    //             step_x.runSpeedToPosition();
-    //             step_z1.runSpeedToPosition();
-    //             step_z2.runSpeedToPosition();
-    //             step_y.runSpeedToPosition();
-    //         }
+            if (comm1.step_motors.next_plant_state == 9){
+                step_x.moveTo(p9_x);
+                step_z1.moveTo(p9_z1);
+                step_z2.moveTo(p9_z1);
+                step_y.moveTo(p9_y);
 
-    //         if (comm1.step_motors.next_plant_state == 10){
-    //             step_x.moveTo(p10_x);
-    //             step_z1.moveTo(p10_z1);
-    //             step_z2.moveTo(p10_z1);
-    //             step_y.moveTo(p10_y);
+                step_x.runSpeedToPosition();
+                step_z1.runSpeedToPosition();
+                step_z2.runSpeedToPosition();
+                step_y.runSpeedToPosition();
+            }
 
-    //             step_x.runSpeedToPosition();
-    //             step_z1.runSpeedToPosition();
-    //             step_z2.runSpeedToPosition();
-    //             step_y.runSpeedToPosition();
-    //         }
+            if (comm1.step_motors.next_plant_state == 10){
+                step_x.moveTo(p10_x);
+                step_z1.moveTo(p10_z1);
+                step_z2.moveTo(p10_z1);
+                step_y.moveTo(p10_y);
 
-    //         if (comm1.step_motors.next_plant_state == 11){
-    //             go_home_pos();
-    //         }
+                step_x.runSpeedToPosition();
+                step_z1.runSpeedToPosition();
+                step_z2.runSpeedToPosition();
+                step_y.runSpeedToPosition();
+            }
+
+            if (comm1.step_motors.next_plant_state == 11){
+                go_home_pos();
+            }
             
             // Serial.print("Step x pos: ");
             // Serial.println(step_x.currentPosition());
@@ -246,8 +262,8 @@ void StepMotor::capture_all_plants(){
 
             // Serial.print("Step y pos: ");
             // Serial.println(step_y.currentPosition());
-        // }
-    // }
+        }
+    }
 }
 
 

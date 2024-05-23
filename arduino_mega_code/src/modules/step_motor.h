@@ -27,62 +27,62 @@ class StepMotor{
     // coords each plants
     // Plant 1
     long int p1_x{-4930};
-    long int p1_z1{57626};
-    long int p1_z2{57626};
+    long int p1_z1{24635};
+    long int p1_z2{24635};
     long int p1_y{1152};
 
     // Plant 2
     long int p2_x{-9564};
-    long int p2_z1{5726};
-    long int p2_z2{5726};
+    long int p2_z1{24635};
+    long int p2_z2{24635};
     long int p2_y{1123};
 
     // Plant 3
     long  int p3_x{-14990};
-    long int p3_z1{57626};
-    long int p3_z2{57626};
+    long int p3_z1{24635};
+    long int p3_z2{24635};
     long int p3_y{1188};
 
     // Plant 4
     long int p4_x{-17538};
-    long int p4_z1{57626};
-    long int p4_z2{57626};
+    long int p4_z1{24635};
+    long int p4_z2{24635};
     long int p4_y{4764};
 
     // Plant 5
     long int p5_x{-12533};
-    long int p5_z1{57626};
-    long int p5_z2{57626};
+    long int p5_z1{24635};
+    long int p5_z2{24635};
     long int p5_y{4177};
 
     // Plant 6
     long int p6_x{-7227};
-    long int p6_z1{57626};
-    long int p6_z2{57626};
+    long int p6_z1{24635};
+    long int p6_z2{24635};
     long int p6_y{4138};
 
     // Plant 7
     long int p7_x{-2328};
-    long int p7_z1{57626};
-    long int p7_z2{57626};
+    long int p7_z1{24635};
+    long int p7_z2{24635};
     long int p7_y{4040};
 
     // Plant 8
     long int p8_x{-5027};
-    long int p8_z1{57626};
-    long int p8_z2{57626};
+    long int p8_z1{24635};
+    long int p8_z2{24635};
     long int p8_y{6850};
 
     // Plant 9
     long int p9_x{-9717};
-    long int p9_z1{57626};
-    long int p9_z2{57626};
+    long int p9_z1{24635};
+    long int p9_z2{24635};
     long int p9_y{6991};
 
     // Plant 10
     long int p10_x{-14897};
-    long int p10_z1{57626};
-    long int p10_z2{57626};
+    long int p10_z1{24635};
+    long int p10_z2{24635};
     long int p10_y{7200};
 
     // for capture plants method

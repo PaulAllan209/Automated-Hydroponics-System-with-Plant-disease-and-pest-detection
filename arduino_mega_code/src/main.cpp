@@ -22,7 +22,7 @@ void setup() {
   pinMode(13, OUTPUT);
 
   // Stepper motor part
-  all_motors.gantry_debug_state = true;
+  all_motors.gantry_debug_state = false;
   all_motors.set_enable_pins();
   all_motors.set_limit_switches_pins();
   all_motors.set_max_speed();
@@ -37,8 +37,8 @@ void loop() {
     communication.read_data();
     communication.parse_data();
     if (communication.is_recv){
-      communication.print_data();
-      RegParam.test_print();
+      // communication.print_data();
+      // RegParam.test_print();
       UnregParam.set_outputs();
     }
   }
@@ -46,10 +46,10 @@ void loop() {
   // Motor part
   all_motors.debug_mode();
 
-  // if (communication.step_motors.capture_plants==1){
-  //   // all_motors.capture_plant_debug();
-  //   all_motors.capture_all_plants();
-  // }
+  if (communication.step_motors.capture_plants==1){
+    // all_motors.capture_plant_debug();
+    all_motors.capture_all_plants();
+  }
 
   RegParam.control_pH();
   RegParam.control_EC();
