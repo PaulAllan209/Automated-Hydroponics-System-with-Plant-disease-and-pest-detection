@@ -69,6 +69,7 @@ void StepMotor::go_home_pos(){
                 
                 return_home_position = true;
                 capture_plants_ready = true;
+                Serial1.println("at_home");
             }
         }
     }
@@ -137,7 +138,15 @@ void StepMotor::capture_all_plants(){
                 step_z2.runSpeedToPosition();
                 step_y.runSpeedToPosition();
 
-                
+                if (step_x.currentPosition() == p1_x){
+                    if (step_z1.currentPosition() == p1_z1){
+                        if (step_z2.currentPosition() == p1_z2){
+                            if (step_y.currentPosition() == p1_y){
+                                Serial1.println("plant_2");
+                            }
+                        }
+                    }
+                }
             }
 
             if (comm1.step_motors.next_plant_state == 2){
