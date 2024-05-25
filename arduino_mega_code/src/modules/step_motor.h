@@ -89,11 +89,13 @@ class StepMotor{
     bool home_pos_state{false};
     int plant_pos_debug;
     bool capture_plants_ready{false};
+    char capture_plants_debug_key;
+    bool capture_plants_debug{false}
 
     // debug mode
     char dir_key;
     long positions[4];
-
+    char plant_pos;
     bool coords_is_equal = true; // state for checking if the stepper motor coords are equal to the sent by raspberry pi
 
     // Stepper motor speed parameters

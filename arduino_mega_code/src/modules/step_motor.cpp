@@ -86,6 +86,14 @@ void StepMotor::capture_plant_debug(){
     step_z2.setSpeed(12000);
     step_y.setSpeed(5000);
 
+    if(Serial.available() > 0){
+        capture_plants_debug_key = Serial.read();
+    }
+
+    if ()
+
+
+
     if (!(return_home_position || capture_plants_ready)){
         // Serial.println("Capture plants was called!");
         go_home_pos();
@@ -115,8 +123,15 @@ void StepMotor::capture_all_plants(){
     step_z2.setSpeed(12000);
     step_y.setSpeed(5000);
 
-    if (!(return_home_position || capture_plants_ready)){
-        // Serial.println("Capture plants was called!");
+    // if (!(return_home_position || capture_plants_ready)){
+    //     // Serial.println("Capture plants was called!");
+    //     go_home_pos();
+    // }
+
+    if (Serial.available() > 0){
+        plant_pos = Serial.read();
+    }
+    if (plant_pos == "z"){
         go_home_pos();
     }
 
@@ -125,7 +140,8 @@ void StepMotor::capture_all_plants(){
         step_z1.setSpeed(12000);
         step_z2.setSpeed(12000);
         step_y.setSpeed(5000);
-        if (comm1.step_motors.capture_plants == 1){
+        
+        if (plant_pos == '1'){
         // Plant 1
             if (comm1.step_motors.next_plant_state == 1){
                 step_x.moveTo(p1_x);
@@ -149,7 +165,7 @@ void StepMotor::capture_all_plants(){
                 }
             }
 
-            if (comm1.step_motors.next_plant_state == 2){
+            if (plant_pos == '2'){
                 step_x.moveTo(p2_x);
                 step_z1.moveTo(p2_z1);
                 step_z2.moveTo(p2_z1);
