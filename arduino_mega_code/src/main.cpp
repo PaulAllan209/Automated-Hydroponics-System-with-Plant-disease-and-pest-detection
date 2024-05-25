@@ -44,6 +44,8 @@ void loop() {
   }
 
   // Motor part
+  all_motors.enable_pins_state();
+
   all_motors.debug_mode();
 
   all_motors.capture_plant_debug();
