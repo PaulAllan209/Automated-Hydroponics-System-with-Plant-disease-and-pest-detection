@@ -26,7 +26,7 @@ class StepMotor{
 
     // coords each plants
     // Plant 1
-    long int p1_x{-4930};
+    long int p1_x{-4500};
     long int p1_z1{24635};
     long int p1_z2{24635};
     long int p1_y{1152};

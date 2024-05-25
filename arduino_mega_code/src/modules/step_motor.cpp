@@ -93,10 +93,138 @@ void StepMotor::capture_plant_debug(){
         }
     }
 
-    if (capture_plants_debug){
-    if (!(return_home_position || capture_plants_ready)){
-        // Serial.println("Capture plants was called!");
+    if (capture_plants_debug_key == 'r'){
         go_home_pos();
+    }
+
+    if (capture_plants_debug_key =='1'){
+        step_x.moveTo(p1_x);
+        step_z1.moveTo(p1_z1);
+        step_z2.moveTo(p1_z1);
+        step_y.moveTo(p1_y);
+
+        step_x.runSpeedToPosition();
+        step_z1.runSpeedToPosition();
+        step_z2.runSpeedToPosition();
+        step_y.runSpeedToPosition();
+
+        // if (step_x.currentPosition() == p1_x){
+        //     if (step_z1.currentPosition() == p1_z1){
+        //         if (step_z2.currentPosition() == p1_z2){
+        //             if (step_y.currentPosition() == p1_y){
+        //                 Serial1.println("plant_2");
+        //             }
+        //         }
+        //     }
+        // }
+    }
+
+    if (capture_plants_debug_key == '2'){
+        step_x.moveTo(p2_x);
+        step_z1.moveTo(p2_z1);
+        step_z2.moveTo(p2_z1);
+        step_y.moveTo(p2_y);
+
+        step_x.runSpeedToPosition();
+        step_z1.runSpeedToPosition();
+        step_z2.runSpeedToPosition();
+        step_y.runSpeedToPosition();
+    }
+
+    if (capture_plants_debug_key == '3'){
+        step_x.moveTo(p3_x);
+        step_z1.moveTo(p3_z1);
+        step_z2.moveTo(p3_z1);
+        step_y.moveTo(p3_y);
+
+        step_x.runSpeedToPosition();
+        step_z1.runSpeedToPosition();
+        step_z2.runSpeedToPosition();
+        step_y.runSpeedToPosition();
+    }
+
+    if (capture_plants_debug_key == '4'){
+        step_x.moveTo(p4_x);
+        step_z1.moveTo(p4_z1);
+        step_z2.moveTo(p4_z1);
+        step_y.moveTo(p4_y);
+
+        step_x.runSpeedToPosition();
+        step_z1.runSpeedToPosition();
+        step_z2.runSpeedToPosition();
+        step_y.runSpeedToPosition();
+    }
+
+    if (capture_plants_debug_key == '5'){
+        step_x.moveTo(p5_x);
+        step_z1.moveTo(p5_z1);
+        step_z2.moveTo(p5_z1);
+        step_y.moveTo(p5_y);
+
+        step_x.runSpeedToPosition();
+        step_z1.runSpeedToPosition();
+        step_z2.runSpeedToPosition();
+        step_y.runSpeedToPosition();
+    }
+
+    if (capture_plants_debug_key == '6'){
+        step_x.moveTo(p6_x);
+        step_z1.moveTo(p6_z1);
+        step_z2.moveTo(p6_z1);
+        step_y.moveTo(p6_y);
+
+        step_x.runSpeedToPosition();
+        step_z1.runSpeedToPosition();
+        step_z2.runSpeedToPosition();
+        step_y.runSpeedToPosition();
+    }
+
+    if (capture_plants_debug_key == '7'){
+        step_x.moveTo(p7_x);
+        step_z1.moveTo(p7_z1);
+        step_z2.moveTo(p7_z1);
+        step_y.moveTo(p7_y);
+
+        step_x.runSpeedToPosition();
+        step_z1.runSpeedToPosition();
+        step_z2.runSpeedToPosition();
+        step_y.runSpeedToPosition();
+    }
+
+    if (capture_plants_debug_key == '8'){
+        step_x.moveTo(p8_x);
+        step_z1.moveTo(p8_z1);
+        step_z2.moveTo(p8_z1);
+        step_y.moveTo(p8_y);
+
+        step_x.runSpeedToPosition();
+        step_z1.runSpeedToPosition();
+        step_z2.runSpeedToPosition();
+        step_y.runSpeedToPosition();
+    }
+
+    if (capture_plants_debug_key == '9'){
+        step_x.moveTo(p9_x);
+        step_z1.moveTo(p9_z1);
+        step_z2.moveTo(p9_z1);
+        step_y.moveTo(p9_y);
+
+        step_x.runSpeedToPosition();
+        step_z1.runSpeedToPosition();
+        step_z2.runSpeedToPosition();
+        step_y.runSpeedToPosition();
+    }
+
+    if (capture_plants_debug_key == '0'){
+        step_x.moveTo(p10_x);
+        step_z1.moveTo(p10_z1);
+        step_z2.moveTo(p10_z1);
+        step_y.moveTo(p10_y);
+
+        step_x.runSpeedToPosition();
+        step_z1.runSpeedToPosition();
+        step_z2.runSpeedToPosition();
+        step_y.runSpeedToPosition();
     }
 }
 
@@ -114,7 +242,7 @@ void StepMotor::capture_plant_debug(){
     //     step_z2.runSpeedToPosition();
     //     step_y.runSpeedToPosition();
     // }
-}
+
 
 void StepMotor::capture_all_plants(){
     step_x.setMaxSpeed(5000);
