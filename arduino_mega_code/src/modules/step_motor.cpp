@@ -10,6 +10,21 @@ void StepMotor::set_enable_pins(){
     step_y.setEnablePin(enable_pin);
 }
 
+void StepMotor::enable_pins_state(){
+    if (comm1.step_motors.enable_pins == 0){
+        step_x.enableOutputs();
+        step_z1.enableOutputs();
+        step_z2.enableOutputs();
+        step_y.enableOutputs();
+    }
+    else if (comm1.step_motors.enable_pins == 1){
+        step_x.disableOutputs();
+        step_z1.disableOutputs();
+        step_z2.disableOutputs();
+        step_y.disableOutputs();
+    }
+}
+
 void StepMotor::set_limit_switches_pins(){
     pinMode(x_limit, INPUT_PULLUP);
     pinMode(z_limit, INPUT_PULLUP);

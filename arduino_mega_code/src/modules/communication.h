@@ -35,6 +35,7 @@ class Communication{
         int next_plant_state{0}; // will be true if the gantry will move to next plant
         int return_home_position{0}; // if true it will return to home position
         int debug_state{0};
+        int enable_pins{0};
     };
 
     RegulatedParam regulated_param;

@@ -84,9 +84,9 @@ void Communication::parse_data(){
       case 116:
         step_motors.return_home_position= atoi(data_contained);
         break;
-      // case 117:
-      //   step_motors.step_z2= atoi(data_contained);
-      //   break;
+      case 117:
+        step_motors.enable_pins= atoi(data_contained);
+        break;
       // case 118:
       //   step_motors.debug_state = atoi(data_contained);
       default:

@@ -122,6 +122,7 @@ class StepMotor{
     int y_limit{44};
 
     void set_enable_pins();
+    void enable_pins_state();
     void set_limit_switches_pins();
     void set_max_speed();
     void add_stepper_motors();
