@@ -48,10 +48,7 @@ void loop() {
 
   all_motors.capture_plant_debug();
 
-  // if (communication.step_motors.capture_plants==1){
-    // all_motors.capture_plant_debug();
-    // all_motors.capture_all_plants();
-  // }
+  all_motors.capture_all_plants();
 
   RegParam.control_pH();
   RegParam.control_EC();
