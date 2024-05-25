@@ -69,7 +69,7 @@ void StepMotor::go_home_pos(){
                 
                 return_home_position = true;
                 capture_plants_ready = true;
-                Serial1.println("at_home");
+                // Serial1.println("at_home");
             }
         }
     }
@@ -88,28 +88,32 @@ void StepMotor::capture_plant_debug(){
 
     if(Serial.available() > 0){
         capture_plants_debug_key = Serial.read();
+        if (capture_plants_debug_key == 'r'){
+            capture_plants_debug = true;
+        }
     }
 
-    if ()
-
-
-
+    if (capture_plants_debug){
     if (!(return_home_position || capture_plants_ready)){
         // Serial.println("Capture plants was called!");
         go_home_pos();
     }
+}
 
-    if (capture_plants_ready == true){
-        step_x.moveTo(p1_x);
-        step_z1.moveTo(p1_z1);
-        step_z2.moveTo(p1_z1);
-        step_y.moveTo(p1_y);
 
-        step_x.runSpeedToPosition();
-        step_z1.runSpeedToPosition();
-        step_z2.runSpeedToPosition();
-        step_y.runSpeedToPosition();
-    }
+
+
+    // if (capture_plants_ready == true){
+    //     step_x.moveTo(p1_x);
+    //     step_z1.moveTo(p1_z1);
+    //     step_z2.moveTo(p1_z1);
+    //     step_y.moveTo(p1_y);
+
+    //     step_x.runSpeedToPosition();
+    //     step_z1.runSpeedToPosition();
+    //     step_z2.runSpeedToPosition();
+    //     step_y.runSpeedToPosition();
+    // }
 }
 
 void StepMotor::capture_all_plants(){

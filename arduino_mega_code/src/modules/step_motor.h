@@ -90,7 +90,7 @@ class StepMotor{
     int plant_pos_debug;
     bool capture_plants_ready{false};
     char capture_plants_debug_key;
-    bool capture_plants_debug{false}
+    bool capture_plants_debug{false};
 
     // debug mode
     char dir_key;

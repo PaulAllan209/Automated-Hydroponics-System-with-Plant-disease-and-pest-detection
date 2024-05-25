@@ -46,6 +46,8 @@ void loop() {
   // Motor part
   all_motors.debug_mode();
 
+  all_motors.capture_plant_debug();
+
   // if (communication.step_motors.capture_plants==1){
     // all_motors.capture_plant_debug();
     // all_motors.capture_all_plants();
