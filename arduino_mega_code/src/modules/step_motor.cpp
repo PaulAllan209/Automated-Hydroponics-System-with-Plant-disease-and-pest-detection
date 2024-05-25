@@ -76,7 +76,7 @@ void StepMotor::go_home_pos(){
 }
 
 void StepMotor::capture_plant_debug(){
-    step_x.setMaxSpeed(5000);
+    step_x.setMaxSpeed(-5000);
     step_z1.setMaxSpeed(12000);
     step_z2.setMaxSpeed(12000);
     step_y.setMaxSpeed(5000);
@@ -219,12 +219,12 @@ void StepMotor::capture_plant_debug(){
 }
 
 void StepMotor::capture_all_plants(){
-    step_x.setMaxSpeed(5000);
+    step_x.setMaxSpeed(-5000);
     step_z1.setMaxSpeed(12000);
     step_z2.setMaxSpeed(12000);
     step_y.setMaxSpeed(5000);
 
-    step_x.setSpeed(5000);
+    step_x.setSpeed(-5000);
     step_z1.setSpeed(12000);
     step_z2.setSpeed(12000);
     step_y.setSpeed(5000);
