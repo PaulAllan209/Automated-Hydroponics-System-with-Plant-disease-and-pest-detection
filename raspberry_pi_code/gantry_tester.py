@@ -10,6 +10,9 @@ ser = serial.Serial(port='/dev/ttyUSB0', baudrate=9600)
 # delay for each plant interval
 del_plant = 10
 
+ser.write(b"<117,1>")
+time.sleep(1)
+
 # Sends command to mega to start the capture of plants
 ser.write(b"<114,1>")
 
@@ -66,3 +69,6 @@ time.sleep(1)
 
 ser.write(b"<114,0>")
 time.sleep(1)
+
+ser.write(b"<117,0>")
+
