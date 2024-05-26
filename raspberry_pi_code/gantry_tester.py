@@ -10,6 +10,10 @@ ser = serial.Serial(port='/dev/ttyUSB0', baudrate=9600)
 # delay for each plant interval
 del_plant = 10
 
+# linear actuators on
+ser.write(b"<107,1>")
+time.sleep(15)
+
 ser.write(b"<117,1>")
 time.sleep(1)
 
@@ -19,7 +23,7 @@ ser.write(b"<114,1>")
 # Sends command to return to home position
 ser.write(b"<116,1>") # dont add spaces in commands
 # Wait 40s
-time.sleep(40)
+time.sleep(10)
 
 # Sends command to turn off home position
 ser.write(b"<116,0>")
@@ -71,4 +75,7 @@ ser.write(b"<114,0>")
 time.sleep(1)
 
 ser.write(b"<117,0>")
+time.sleep(1)
+
+ser.write(b"<107,0>")
 
