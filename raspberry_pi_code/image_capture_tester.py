@@ -3,7 +3,7 @@ import os
 import time
 from datetime import datetime
 
-def capture_and_save_image(output_dir):
+def capture_and_save_image(output_dir, name_number):
     # Open a connection to the default camera (usually the first camera)
     cap = cv2.VideoCapture(0)
 
@@ -24,7 +24,7 @@ def capture_and_save_image(output_dir):
         os.makedirs(output_dir)
 
     # Save the captured image to a file in the specified directory
-    image_filename = os.path.join(output_dir, 'captured_image.jpg')
+    image_filename = os.path.join(output_dir, f'plant_{name_number}.jpg')
     cv2.imwrite(image_filename, frame)
     print(f"Image saved as {image_filename}")
 
@@ -55,4 +55,4 @@ def create_directory_structure(directory):
 
 dir_img = create_directory_structure(r"C:\Users\dpaul\Desktop\Automated-Hydroponics-System-with-Plant-disease-and-pest-detection\dir_tester")
 
-capture_and_save_image(dir_img)
+capture_and_save_image(dir_img, 1)
