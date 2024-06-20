@@ -242,7 +242,7 @@ This is for the pest detection system
 """
 ################################################################
 # Load the model
-model = YOLO(r"/home/superpotatorpi/Desktop/machine_learning_files")
+model = YOLO(r"/home/superpotatorpi/Desktop/machine_learning_files/slugs_and_snails_detection.pt")
 
 # Path to the folder containing images
 image_path = dir_path
@@ -254,7 +254,7 @@ list_images = os.listdir(image_path)
 list_path_images = [os.path.join(image_path, i) for i in list_images]
 
 # Set confidence threshold
-conf_threshold = 0.5
+conf_threshold = 0.7
 
 # Dictionary to store results
 results_summary = {}
@@ -305,22 +305,22 @@ for image_name, counts in results_summary.items():
 email_sender = 'dpaulallan15@gmail.com'
 email_password = 'shai majm tzag aybb'
 email_receiver = 'dpaulallan14@gmail.com'
-subject =  "Plant Health Assessment Results"
+subject =  "Plant Health Assessment and Snails detection Results"
 time_now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 
 body = f"""
-These are the results for the Plant Health Assessment and Slugs and Snails detection on {time_now}.
-Plant A - {values[pred_adjusted[0]]} | Slugs:{results_summary["plant_01.jpg"][0]}, Snails:{results_summary["plant_01.jpg"][1]}
-Plant B - {values[pred_adjusted[1]]} | Slugs:{results_summary["plant_02.jpg"][0]}, Snails:{results_summary["plant_02.jpg"][1]}
-Plant C - {values[pred_adjusted[2]]} | Slugs:{results_summary["plant_03.jpg"][0]}, Snails:{results_summary["plant_03.jpg"][1]}
-Plant D - {values[pred_adjusted[6]]} | Slugs:{results_summary["plant_04.jpg"][0]}, Snails:{results_summary["plant_04.jpg"][1]}
-Plant E - {values[pred_adjusted[5]]} | Slugs:{results_summary["plant_05.jpg"][0]}, Snails:{results_summary["plant_05.jpg"][1]}
-Plant F - {values[pred_adjusted[4]]} | Slugs:{results_summary["plant_06.jpg"][0]}, Snails:{results_summary["plant_06.jpg"][1]}
-Plant G - {values[pred_adjusted[3]]} | Slugs:{results_summary["plant_07.jpg"][0]}, Snails:{results_summary["plant_07.jpg"][1]}
-Plant H - {values[pred_adjusted[7]]} | Slugs:{results_summary["plant_08.jpg"][0]}, Snails:{results_summary["plant_08.jpg"][1]}
-Plant I - {values[pred_adjusted[8]]} | Slugs:{results_summary["plant_09.jpg"][0]}, Snails:{results_summary["plant_09.jpg"][1]}
-Plant J - {values[pred_adjusted[9]]} | Slugs:{results_summary["plant_10.jpg"][0]}, Snails:{results_summary["plant_10.jpg"][1]}
+These are the results for the Plant Health Assessment Snails detection on {time_now}.
+Plant A - {values[pred_adjusted[0]]} | Snails:{results_summary["plant_01.jpg"][1]}
+Plant B - {values[pred_adjusted[1]]} | Snails:{results_summary["plant_02.jpg"][1]}
+Plant C - {values[pred_adjusted[2]]} | Snails:{results_summary["plant_03.jpg"][1]}
+Plant D - {values[pred_adjusted[6]]} | Snails:{results_summary["plant_04.jpg"][1]}
+Plant E - {values[pred_adjusted[5]]} | Snails:{results_summary["plant_05.jpg"][1]}
+Plant F - {values[pred_adjusted[4]]} | Snails:{results_summary["plant_06.jpg"][1]}
+Plant G - {values[pred_adjusted[3]]} | Snails:{results_summary["plant_07.jpg"][1]}
+Plant H - {values[pred_adjusted[7]]} | Snails:{results_summary["plant_08.jpg"][1]}
+Plant I - {values[pred_adjusted[8]]} | Snails:{results_summary["plant_09.jpg"][1]}
+Plant J - {values[pred_adjusted[9]]} | Snails:{results_summary["plant_10.jpg"][1]}
 """
 
 em = EmailMessage()
