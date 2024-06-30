@@ -17,6 +17,10 @@ const char* mqtt_server = "192.168.1.10"; //mqtt server
 const char* ssid = "Tatay Jhoe";
 const char* password = "24build13";
 
+// const char* mqtt_server = "192.168.43.235"; //mqtt server
+// const char* ssid = "FREE WIFI";
+// const char* password = "xyz123456";
+
 const char *topic = "emqx/esp32/pH";
 const char *topic_temp = "emqx/esp32/temp";
 
