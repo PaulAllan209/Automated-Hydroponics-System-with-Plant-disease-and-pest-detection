@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "parameter_controller.h"
 
-void RegulatedParam::read_data(String received_dat){
+void RegulatedParam::read_data(String received_dat){ // for debugging purposes
     if (received_dat == static_cast<String>("a")){
     base_peris_pump = Serial.readStringUntil(',').toInt();
     Serial.println(base_peris_pump);
@@ -74,7 +74,6 @@ void RegulatedParam::control_EC(){
     }
     if (RVnutriB_pump > 200){
         digitalWrite(DOnutriB_peris_pump, HIGH);
-        Serial1.println("NutriB was high!");
     }
 
     if (RVnutriA_pump < 200){
@@ -97,13 +96,16 @@ void RegulatedParam::control_water_temp(){
     }
 }
 
-void RegulatedParam::control_water_level(){
-}
-
 void RegulatedParam::control_water_flow_rate(){
     int flow_val = analogRead(ARwater_pump);
-    int mapped_val = map(flow_val, 0, 676, 0, 255);
-    analogWrite(AOwater_pump, mapped_val);
+    int mapped_val = map(flow_val, 0, 574, 0, 255);
+    if (mapped_val > 100){
+        analogWrite(AOwater_pump, 220);
+    }
+
+    else if (mapped_val < 100){
+        analogWrite(AOwater_pump, 0);
+    }
 }
 
 void RegulatedParam::set_pins(){
@@ -124,9 +126,25 @@ void RegulatedParam::set_pins(){
 
     // Digital pins out
     pinMode(peltier_DPDT_1, OUTPUT);
-    pinMode(peltier_DPDT_2, OUTPUT);
-    pinMode(peltier_switch, OUTPUT);
     pinMode(solenoid_valve, OUTPUT);
+    pinMode(EC_power_p, OUTPUT);
+    pinMode(pH_power_p, OUTPUT);
+}
+
+void RegulatedParam::EC_and_pH_power(){
+    if (comm1.regulated_param.EC_power == 0){
+        digitalWrite(EC_power_p, HIGH);
+    }
+    else if (comm1.regulated_param.EC_power == 1){
+        digitalWrite(EC_power_p, LOW);
+    }
+
+    if (comm1.regulated_param.pH_power == 0){
+        digitalWrite(pH_power_p, HIGH);
+    }
+    else if (comm1.regulated_param.pH_power == 1){
+        digitalWrite(pH_power_p, LOW);
+    }
 }
 
 void RegulatedParam::test_print(){

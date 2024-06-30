@@ -22,8 +22,8 @@ void setup() {
   pinMode(13, OUTPUT);
 
   // Stepper motor part
-  all_motors.gantry_debug_state = false;
-  all_motors.set_enable_pins();
+  all_motors.gantry_debug_state = true;
+  all_motors.set_enable_pins(); 
   all_motors.set_limit_switches_pins();
   all_motors.set_max_speed();
 
@@ -44,16 +44,22 @@ void loop() {
   }
 
   // Motor part
-  all_motors.enable_pins_state();
+  if (communication.step_motors.debug_state==0){
+    all_motors.enable_pins_state();
+    all_motors.capture_all_plants();
+  }
 
-  all_motors.debug_mode();
+  else if(communication.step_motors.debug_state==1){
+    all_motors.debug_mode();
+  }
 
-  all_motors.capture_plant_debug();
 
-  all_motors.capture_all_plants();
+  // all_motors.capture_plant_debug();
+
 
   RegParam.control_pH();
   RegParam.control_EC();
+  RegParam.EC_and_pH_power();
   RegParam.control_water_flow_rate();
   RegParam.control_water_temp();
 

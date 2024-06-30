@@ -87,8 +87,15 @@ void Communication::parse_data(){
       case 117:
         step_motors.enable_pins= atoi(data_contained);
         break;
-      // case 118:
-      //   step_motors.debug_state = atoi(data_contained);
+      case 118:
+        step_motors.debug_state = atoi(data_contained);
+        break;
+      case 119:
+        regulated_param.EC_power = atoi(data_contained);
+        break;
+      case 120:
+        regulated_param.pH_power = atoi(data_contained);
+        break;
       default:
         break;
     }

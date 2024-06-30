@@ -23,8 +23,8 @@ class RegulatedParam{
     int AOwater_pump_peltier{3};
 
     int peltier_DPDT_1{28};
-    int peltier_DPDT_2{29};
-    int peltier_switch{30};
+    int EC_power_p{29};
+    int pH_power_p{30};
     int solenoid_valve{31};
 
 
@@ -51,6 +51,8 @@ class RegulatedParam{
 
     void set_pins();
     void test_print();
+
+    void EC_and_pH_power();
 };
 
 class UnregulatedParam{

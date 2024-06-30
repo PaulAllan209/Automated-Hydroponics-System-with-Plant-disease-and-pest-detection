@@ -15,6 +15,9 @@ class Communication{
         char peltier_mode{'C'};
 
         int solenoid{0};
+
+        int EC_power{0};
+        int pH_power{0};
     };
 
     struct UnregulatedParam{
