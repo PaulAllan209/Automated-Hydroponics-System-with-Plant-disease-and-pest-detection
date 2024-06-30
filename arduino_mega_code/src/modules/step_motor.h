@@ -26,64 +26,65 @@ class StepMotor{
 
     // coords each plants
     // Plant 1
-    long int p1_x{-4500};
-    long int p1_z1{24635};
-    long int p1_z2{24635};
-    long int p1_y{1152};
+    long int z_axis{26773};
+    long int p1_x{-3693};
+    long int p1_z1{z_axis};
+    long int p1_z2{z_axis};
+    long int p1_y{908};
 
     // Plant 2
-    long int p2_x{-9564};
-    long int p2_z1{24635};
-    long int p2_z2{24635};
-    long int p2_y{1123};
+    long int p2_x{-8478};
+    long int p2_z1{z_axis};
+    long int p2_z2{z_axis};
+    long int p2_y{945};
 
     // Plant 3
-    long  int p3_x{-14990};
-    long int p3_z1{24635};
-    long int p3_z2{24635};
-    long int p3_y{1188};
+    long  int p3_x{-13629};
+    long int p3_z1{z_axis};
+    long int p3_z2{z_axis};
+    long int p3_y{841};
 
     // Plant 4
-    long int p4_x{-17538};
-    long int p4_z1{24635};
-    long int p4_z2{24635};
-    long int p4_y{4764};
+    long int p4_x{-16210};
+    long int p4_z1{z_axis};
+    long int p4_z2{z_axis};
+    long int p4_y{4073};
 
     // Plant 5
-    long int p5_x{-12533};
-    long int p5_z1{24635};
-    long int p5_z2{24635};
-    long int p5_y{4177};
+    long int p5_x{-11163};
+    long int p5_z1{z_axis};
+    long int p5_z2{z_axis};
+    long int p5_y{3946};
 
     // Plant 6
-    long int p6_x{-7227};
-    long int p6_z1{24635};
-    long int p6_z2{24635};
-    long int p6_y{4138};
+    long int p6_x{-6224};
+    long int p6_z1{z_axis};
+    long int p6_z2{z_axis};
+    long int p6_y{3955};
 
     // Plant 7
-    long int p7_x{-2328};
-    long int p7_z1{24635};
-    long int p7_z2{24635};
-    long int p7_y{4040};
+    long int p7_x{-1222};
+    long int p7_z1{z_axis};
+    long int p7_z2{z_axis};
+    long int p7_y{3994};
 
     // Plant 8
-    long int p8_x{-5027};
-    long int p8_z1{24635};
-    long int p8_z2{24635};
-    long int p8_y{6850};
+    long int p8_x{-3556};
+    long int p8_z1{z_axis};
+    long int p8_z2{z_axis};
+    long int p8_y{6759};
 
     // Plant 9
-    long int p9_x{-9717};
-    long int p9_z1{24635};
-    long int p9_z2{24635};
-    long int p9_y{6991};
+    long int p9_x{-8625};
+    long int p9_z1{z_axis};
+    long int p9_z2{z_axis};
+    long int p9_y{6800};
 
     // Plant 10
-    long int p10_x{-14897};
-    long int p10_z1{24635};
-    long int p10_z2{24635};
-    long int p10_y{7200};
+    long int p10_x{-13676};
+    long int p10_z1{z_axis};
+    long int p10_z2{z_axis};
+    long int p10_y{6803};
 
     // for capture plants method
     bool home_pos_state{false};
