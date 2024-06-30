@@ -1,3 +1,12 @@
+/*
+communication.cpp
+
+This file handles the serial communication between the arduino mega and the
+commands sent by the raspberry pi.
+*/
+
+
+
 #include <Arduino.h>
 #include "./modules/communication.h"
 

@@ -1,3 +1,11 @@
+/*
+step_motor.h
+
+This file contains the variables and the defined arduino mega pins
+that will be used in the gantry robot system. The XYZ coordinates of
+the plants are also defined in this file
+*/
+
 #pragma once
 #include <MultiStepper.h>
 #include <AccelStepper.h>

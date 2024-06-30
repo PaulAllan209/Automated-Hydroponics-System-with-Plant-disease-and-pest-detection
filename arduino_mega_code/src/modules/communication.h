@@ -1,3 +1,9 @@
+/*
+communication.h
+
+This file defines the variables used by the communication.cpp file.
+*/
+
 #pragma once
 
 class Communication{

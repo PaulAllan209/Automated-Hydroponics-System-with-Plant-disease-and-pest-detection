@@ -1,3 +1,10 @@
+/*
+step_motor.cpp
+
+This file handles the movement functionality of the gantry robot.
+It ensures the proper synchronization and axis movements of the stepper motors.
+*/
+
 #include "./modules/step_motor.h"
 
 StepMotor::StepMotor(Communication& comm1_input) : comm1(comm1_input){

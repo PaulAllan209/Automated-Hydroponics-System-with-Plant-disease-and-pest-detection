@@ -1,3 +1,12 @@
+/*
+Arduino Mega Code
+
+main.cpp
+
+This file contains the main functionality of the arduino mega.
+It initializes the modules of the system and coordinates the overall process.
+*/
+
 #include <Arduino.h>
 #include "./modules/communication.h"
 #include "./modules/step_motor.h"
@@ -5,13 +14,10 @@
 
 static Communication communication;
 StepMotor all_motors(communication);
-RegulatedParam RegParam(communication); //TODO: This line is causing problems with the communication protocol
+RegulatedParam RegParam(communication); 
 UnregulatedParam UnregParam(communication);
 String received_dat;
 int CTS_pin{7};
-
-// Millis variables for delaying
-
 
 void setup() {
   communication.def_CTS_pin(CTS_pin);
@@ -56,20 +62,9 @@ void loop() {
 
   // all_motors.capture_plant_debug();
 
-
   RegParam.control_pH();
   RegParam.control_EC();
   RegParam.EC_and_pH_power();
   RegParam.control_water_flow_rate();
   RegParam.control_water_temp();
-
-
-
-
-
-  // delay(1000);
-  // delay(500);
-  // analogWrite(13, 0);
-
-
 }

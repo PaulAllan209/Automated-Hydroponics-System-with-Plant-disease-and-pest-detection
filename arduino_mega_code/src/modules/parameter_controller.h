@@ -1,3 +1,10 @@
+/*
+parameter_controller.h
+
+This file defines the variables used by regulated_param.cpp and
+unregulated_param.cpp.
+*/
+
 #pragma once
 #include <Arduino.h>
 #include "./modules/communication.h"

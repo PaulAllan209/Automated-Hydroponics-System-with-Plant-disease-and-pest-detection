@@ -1,3 +1,10 @@
+/*
+unregulated_param.cpp
+
+This file handles the functionality of the linear actuator
+and the grow lights.
+*/
+
 #include <Arduino.h>
 #include "parameter_controller.h"
 

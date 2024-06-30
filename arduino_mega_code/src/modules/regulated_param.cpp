@@ -1,3 +1,11 @@
+/*
+regulated_param.cpp
+
+This file contains the code for controlling the four peristaltic pumps,
+turning the peltier cooler on or off, setting the voltage for the water
+inlet pump, and the power for both the pH and EC sensor.
+*/
+
 #include <Arduino.h>
 #include "parameter_controller.h"
 
