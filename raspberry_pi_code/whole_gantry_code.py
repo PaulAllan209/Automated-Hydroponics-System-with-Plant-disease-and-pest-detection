@@ -1,3 +1,11 @@
+"""
+This code is integrated into one of the MyCodo outputs and is responsible 
+for sending commands to the Arduino Mega to control the gantry robot's 
+movements and capture images of the plants. Additionally, the code includes 
+the machine learning component of the system and the functionality for 
+sending email notifications.
+"""
+
 log_string = "ID: {id}: ON".format(id=output_id)
 self.logger.info(log_string)
 
