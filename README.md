@@ -52,4 +52,5 @@ A flowchart depicting the process of snail detection, including data capture, pr
 ## 7. Flowchart: Training of Machine Learning Models
 
 A flowchart showing the workflow for training both the AlexNet (plant health) and YOLOv8 (snail detection) models, covering dataset preparation, augmentation, model training, validation, and deployment steps.
+
 ---
