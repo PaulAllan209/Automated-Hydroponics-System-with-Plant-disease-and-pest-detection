@@ -15,19 +15,29 @@ This section provides a visual and technical overview of the Automated Hydroponi
 
 ### 1. System Connection Overview
 
-A picture or diagram showing the overall connection and interaction of all system components, including sensors, controllers, actuators, and the gantry robot.
+A diagram showing the overall connection and interaction of all system components, including sensors, controllers, actuators, and the gantry robot.
+
+![Diagram components](/images_docs/Architectural_design.jpg)
 
 ---
 
 ### 2. Circuit Diagrams
 
-Detailed electronic circuit diagrams illustrating the wiring of sensors (pH, EC, temperature), actuators (pumps, valves), microcontrollers, and power supply.
+Detailed electronic circuit diagrams illustrating the wiring of ArduinoMEGA, RaspberryPi, and power supply.
+
+![ArduinoMEGA](/images_docs/arduino_mega_diagram.jpg)
+![RaspberryPi](/images_docs/raspbery_pi_diagram.jpg)
+![PowerSupply](/images_docs/power_supply_diagram.jpg)
 
 ---
 
 ### 3. 3D Model Views of the Prototype
 
 Rendered images or screenshots of the 3D CAD model for the hydroponic system and gantry robot, highlighting mechanical design and spatial arrangement.
+
+![GantryView](/images_docs/3d_model_views/gantry_view.jpg)
+![GrowLightsView](/images_docs/3d_model_views/grow_lights_view.jpg)
+![DownspoutsView](/images_docs/3d_model_views/downspouts_view.jpg)
 
 ---
 
@@ -40,6 +50,9 @@ Real-life photographs of the assembled prototype, including wide shots and close
 ### 5. Flowchart: Image Processing for Plant Health Assessment
 
 A flowchart illustrating the image processing pipeline for plant health assessment, from image acquisition, preprocessing, AlexNet inference, to result reporting.
+
+![PlantHealthAssessmentFlow](/images_docs/plant_health_assessment.jpg)
+![SnailDetectionFlow](/images_docs/snails_detection_system.jpg)
 
 ---
 
